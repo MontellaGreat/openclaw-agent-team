@@ -26,6 +26,9 @@
 - 一份适配 OpenClaw 的落地说明
 - 一份与 `openclaw-control-center` 的集成说明
 - 一份更细的 agent 职责规格说明
+- 一份任务分发矩阵
+- 一份片场调度规则
+- 一套片场子 agent 输入规则
 
 ---
 
@@ -52,10 +55,21 @@
 - 观象：视觉理解
 - 铁手：研发执行
 - 问隙：测试排障
-- 片场：多媒体制作
+- 片场：多媒体调度中枢
+  - 片场-生图
+  - 片场-视频
+  - 片场-修图
+  - 片场-保留位（等待第 4 个子 agent 定义）
 
 详细规格见：
 - `docs/agent-specifications.md`
+- `docs/agent-routing-matrix.md`
+- `docs/pianchang-orchestration.md`
+
+规则文件见：
+- `rules/pianchang-image-input.md`
+- `rules/pianchang-edit-input.md`
+- `rules/pianchang-video-input.md`（待接入）
 
 ---
 
@@ -110,7 +124,13 @@ openclaw-agent-team/
 │  ├─ openclaw-adaptation.md
 │  ├─ rollout-checklist.md
 │  ├─ control-center-integration.md
-│  └─ agent-specifications.md
+│  ├─ agent-specifications.md
+│  ├─ agent-routing-matrix.md
+│  └─ pianchang-orchestration.md
+├─ rules/
+│  ├─ pianchang-image-input.md
+│  ├─ pianchang-edit-input.md
+│  └─ pianchang-video-input.md (pending)
 └─ examples/
    ├─ example-user-requests.md
    ├─ example-delegation-patterns.md
