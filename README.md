@@ -25,6 +25,7 @@
 - 一段可直接复制使用的总提示词
 - 一份适配 OpenClaw 的落地说明
 - 一份与 `openclaw-control-center` 的集成说明
+- 一份更细的 agent 职责规格说明
 
 ---
 
@@ -53,6 +54,9 @@
 - 问隙：测试排障
 - 片场：多媒体制作
 
+详细规格见：
+- `docs/agent-specifications.md`
+
 ---
 
 ## 核心原则
@@ -68,20 +72,12 @@
 
 ---
 
-## 适用场景
-
-适合这些情况：
-- 你想把 OpenClaw 从“单助手”变成“团队总控”
-- 你已经有多个子 agent，希望职责更清晰
-- 你希望高风险动作必须经主 Agent 复核
-- 你希望迁移到别的 OpenClaw 实例时，直接复制一段提示词就能开工
-
----
-
 ## 快速开始
 
 ### 方案 A：只用提示词
-直接复制 `prompt/one-shot-prompt.md` 的内容，放进你的主 Agent system prompt / persona / boot prompt 中。
+- 精简版：`prompt/PROMPT_SHORT.md`
+- 完整版：`prompt/PROMPT_FULL.md`
+- 单段版：`prompt/one-shot-prompt.md`
 
 ### 方案 B：作为项目模板
 把本仓库连同文档一起放进工作区，在 OpenClaw 中作为团队协作规范使用。
@@ -104,6 +100,8 @@ openclaw-agent-team/
 ├─ LICENSE
 ├─ prompt/
 │  ├─ one-shot-prompt.md
+│  ├─ PROMPT_SHORT.md
+│  ├─ PROMPT_FULL.md
 │  └─ modular-prompt.md
 ├─ docs/
 │  ├─ architecture.md
@@ -111,37 +109,13 @@ openclaw-agent-team/
 │  ├─ risk-and-review.md
 │  ├─ openclaw-adaptation.md
 │  ├─ rollout-checklist.md
-│  └─ control-center-integration.md
+│  ├─ control-center-integration.md
+│  └─ agent-specifications.md
 └─ examples/
    ├─ example-user-requests.md
    ├─ example-delegation-patterns.md
    └─ example-control-center-pairing.md
 ```
-
----
-
-## 项目目标
-
-本项目后续会继续完善到可直接用于：
-- 新 OpenClaw 实例初始化
-- 多 agent 协作规范沉淀
-- 提示词即插即用
-- 团队分工快速复制
-- 与控制中心形成“制度层 + 观察层”的组合
-
----
-
-## 当前状态
-
-- [x] 项目初始化
-- [x] 单段提示词草案
-- [x] 团队规则草案
-- [x] GitHub 仓库发布
-- [x] Control Center 集成说明
-- [ ] OpenClaw 多实例迁移说明补全
-- [ ] 使用示例补全
-- [ ] 精简版/完整版提示词双版本固化
-- [ ] 深度联动设计（可选）
 
 ---
 
