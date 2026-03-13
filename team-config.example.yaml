@@ -1,0 +1,92 @@
+# Example machine-readable team config for OpenClaw Agent Team
+
+version: 1
+team:
+  main_agent:
+    id: main
+    role: 墨影
+    mode: orchestrator-plus-direct-execution
+    policy:
+      direct_execute_simple_tasks: true
+      decompose_complex_tasks: true
+      review_high_risk_tasks: true
+      explain_before_delegation: true
+      allow_parallel_only_when_independent: true
+
+  specialists:
+    - id: biguan
+      role: 笔官
+      capability: writing
+    - id: tanzhen
+      role: 探针
+      capability: research
+    - id: guanxiang
+      role: 观象
+      capability: vision
+    - id: tieshou
+      role: 铁手
+      capability: engineering
+    - id: wenxi
+      role: 问隙
+      capability: testing
+    - id: pianchang
+      role: 片场
+      capability: multimedia-orchestration
+      subagents:
+        - id: pianchang-image
+          role: 片场-生图
+          capability: image-generation
+          rule_file: rules/pianchang-image-input.md
+        - id: pianchang-video
+          role: 片场-视频
+          capability: video-generation
+          rule_file: rules/pianchang-video-input.md
+        - id: pianchang-edit
+          role: 片场-修图
+          capability: image-editing
+          rule_file: rules/pianchang-edit-input.md
+
+routing:
+  complexity_levels:
+    L1: direct_execute
+    L2: single_specialist
+    L3: multi_step_collaboration
+    L4: high_risk_review
+
+  high_risk_categories:
+    - config_change
+    - permission_change
+    - secret_handling
+    - service_modification
+    - delete_or_overwrite
+    - deployment
+    - formal_external_send
+    - privacy_money_legal
+
+workflow:
+  lifecycle:
+    - Inbox
+    - Judging
+    - DirectExecute
+    - Decomposed
+    - Assigned
+    - InProgress
+    - Handoff
+    - Review
+    - Released
+    - Failed
+    - Blocked
+    - Stopped
+
+  handoff_required_fields:
+    - what_was_done
+    - result_or_artifact
+    - verification_method
+    - known_risks
+    - next_step
+
+  parallel_rules:
+    require_independent_subtasks: true
+    require_clear_time_benefit: true
+    require_low_merge_cost: true
+    forbid_parallel_when_dependency_chain: true

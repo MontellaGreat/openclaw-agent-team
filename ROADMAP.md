@@ -22,31 +22,41 @@ Turn `openclaw-agent-team` into a reusable multi-agent operating spec for OpenCl
 - [x] Install guide
 - [x] Main-agent decision flow
 - [x] Complex task playbook
-- [ ] Simple task playbook
-- [ ] FAQ / troubleshooting
+- [x] Simple task playbook
+- [x] FAQ / troubleshooting
 
-## Phase 3 — Open Source Readiness 🚧
+## Phase 3 — Open Source Readiness ✅
 - [x] GitHub repo published
 - [x] Changelog
 - [x] Roadmap
-- [ ] English README polish
-- [ ] Example screenshots / diagrams
+- [x] English README
+- [x] Example diagrams (text version)
+- [x] Machine-readable config template
 - [ ] Version tags / release notes
 
-## Phase 4 — Advanced Extensions
+## Phase 4 — v1 Release Preparation 🚧
+- [x] Task lifecycle
+- [x] Handoff protocol
+- [x] Review / quality gates
+- [x] Task complexity levels
+- [x] Main-agent orchestration awareness
+- [x] Parallel delegation rules
+- [ ] Final release notes
+- [ ] v1 tag
+
+## Phase 5 — Advanced Extensions
 - [ ] More reusable task playbooks
 - [ ] Agent prompt packs by scenario
 - [ ] Control Center deeper integration guidance
-- [ ] Optional machine-readable config template
 - [ ] Benchmark / evaluation checklist
 
 ---
 
 ## Near-term priorities
-1. Add `examples/simple-task-playbook.md`
-2. Add `README.en.md`
-3. Add FAQ/troubleshooting section
-4. Add release notes for first public version
+1. Prepare v1 release notes
+2. Create first tagged release
+3. Add example visuals if needed
+4. Keep migration instructions polished
 
 ---
 

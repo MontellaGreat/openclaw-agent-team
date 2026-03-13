@@ -28,6 +28,7 @@ This repo provides:
 - decision flow for the main agent
 - task playbooks
 - multimedia orchestration rules
+- lifecycle / handoff / review gate / complexity docs
 
 ---
 
@@ -60,6 +61,13 @@ Responsibilities:
 If the task is simple and can be handled reliably, do it directly.
 Only split the task when it is truly complex, risky, or requires specialist capability.
 
+The operating model also includes:
+- lifecycle tracking
+- handoff protocol
+- review gates
+- complexity levels
+- parallel delegation rules
+
 ---
 
 ## Key Files
@@ -68,6 +76,10 @@ Only split the task when it is truly complex, risky, or requires specialist capa
 - `prompt/PROMPT_FULL.md`
 - `docs/main-agent-decision-flow.md`
 - `docs/agent-routing-matrix.md`
+- `docs/task-lifecycle.md`
+- `docs/handoff-protocol.md`
+- `docs/review-quality-gates.md`
+- `docs/task-complexity-levels.md`
 - `docs/pianchang-orchestration.md`
 - `examples/simple-task-playbook.md`
 - `examples/complex-task-playbook.md`

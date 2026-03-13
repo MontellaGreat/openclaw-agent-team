@@ -3,7 +3,36 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-- Ongoing refinement of prompts, routing rules, and OpenClaw migration guidance.
+- Preparing v1 release notes and tag.
+
+## [0.6.0] - 2026-03-13
+### Added
+- `docs/task-lifecycle.md`
+- `docs/handoff-protocol.md`
+- `docs/review-quality-gates.md`
+- `docs/task-complexity-levels.md`
+- `docs/faq.md`
+- `docs/troubleshooting.md`
+- `docs/diagrams.md`
+- `team-config.example.yaml`
+
+### Changed
+- Main Agent upgraded with explicit orchestration awareness.
+- Complexity grading introduced: L1 / L2 / L3 / L4.
+- Parallel delegation rules strengthened.
+- Handoff and review gates formalized.
+- README and prompts updated to reflect v1 operating model.
+
+## [0.5.0] - 2026-03-13
+### Added
+- `CHANGELOG.md`
+- `ROADMAP.md`
+- `README.en.md`
+- `examples/simple-task-playbook.md`
+
+### Changed
+- Project upgraded toward open-source readiness.
+- README expanded with install, examples, roadmap, and English entrypoint.
 
 ## [0.4.0] - 2026-03-13
 ### Added
