@@ -29,6 +29,8 @@
 - 一份任务分发矩阵
 - 一份片场调度规则
 - 一套片场子 agent 输入规则
+- 一份主 Agent 决策流程
+- 一套复杂任务示例流程
 
 ---
 
@@ -38,7 +40,9 @@
 职责：
 - 接收用户目标
 - 判断任务性质和优先级
-- 拆解任务
+- **先判断任务是简单还是复杂**
+- 简单任务直接执行
+- 复杂任务拆解后再下放
 - 选择合适的附属 Agent
 - 汇总附属 Agent 的结果
 - 做最终审议
@@ -64,24 +68,32 @@
 - `docs/agent-specifications.md`
 - `docs/agent-routing-matrix.md`
 - `docs/pianchang-orchestration.md`
+- `docs/main-agent-decision-flow.md`
 
 规则文件见：
 - `rules/pianchang-image-input.md`
 - `rules/pianchang-video-input.md`
 - `rules/pianchang-edit-input.md`
 
+示例流程见：
+- `examples/complex-task-playbook.md`
+
+安装说明见：
+- `INSTALL.md`
+
 ---
 
 ## 核心原则
 
 1. 主 Agent 是唯一总控，附属 Agent 不能替代最终决策。
-2. 高风险任务必须经过主 Agent 复核。
-3. 对外发布、代码合并、配置变更、权限相关操作，必须经过主 Agent 审议。
-4. 优先追求稳定、清晰、可执行。
-5. 控制团队复杂度：能单线就不并行，能并行就不串行，能直出就不层层会审。
-6. 附属 Agent 必须有明确任务边界、交付格式和完成标准。
-7. 结果冲突由主 Agent 裁决，不能把冲突原样抛给用户。
-8. 输出结论优先、简洁清晰、少废话。
+2. 主 Agent 接到任务后先判断：简单任务直接做，复杂任务再拆。
+3. 高风险任务必须经过主 Agent 复核。
+4. 对外发布、代码合并、配置变更、权限相关操作，必须经过主 Agent 审议。
+5. 优先追求稳定、清晰、可执行。
+6. 控制团队复杂度：能单线就不并行，能并行就不串行，能直出就不层层会审。
+7. 附属 Agent 必须有明确任务边界、交付格式和完成标准。
+8. 结果冲突由主 Agent 裁决，不能把冲突原样抛给用户。
+9. 输出结论优先、简洁清晰、少废话。
 
 ---
 
@@ -110,6 +122,7 @@
 ```text
 openclaw-agent-team/
 ├─ README.md
+├─ INSTALL.md
 ├─ LICENSE
 ├─ prompt/
 │  ├─ one-shot-prompt.md
@@ -125,7 +138,8 @@ openclaw-agent-team/
 │  ├─ control-center-integration.md
 │  ├─ agent-specifications.md
 │  ├─ agent-routing-matrix.md
-│  └─ pianchang-orchestration.md
+│  ├─ pianchang-orchestration.md
+│  └─ main-agent-decision-flow.md
 ├─ rules/
 │  ├─ pianchang-image-input.md
 │  ├─ pianchang-video-input.md
@@ -133,7 +147,8 @@ openclaw-agent-team/
 └─ examples/
    ├─ example-user-requests.md
    ├─ example-delegation-patterns.md
-   └─ example-control-center-pairing.md
+   ├─ example-control-center-pairing.md
+   └─ complex-task-playbook.md
 ```
 
 ---
