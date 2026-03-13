@@ -1,4 +1,4 @@
-# OpenClaw Multi-Agent Blueprint
+# OpenClaw Agent Team
 
 一个可直接复用的 **OpenClaw 多 Agent 分工方案**。
 
@@ -24,6 +24,7 @@
 - 一套团队调度规则
 - 一段可直接复制使用的总提示词
 - 一份适配 OpenClaw 的落地说明
+- 一份与 `openclaw-control-center` 的集成说明
 
 ---
 
@@ -85,12 +86,20 @@
 ### 方案 B：作为项目模板
 把本仓库连同文档一起放进工作区，在 OpenClaw 中作为团队协作规范使用。
 
+### 方案 C：配合 Control Center 使用
+如果你还想要一个可视化控制台来观察多 Agent 的运行状态，可以配合：
+- `TianyiDataScience/openclaw-control-center`
+
+集成说明见：
+- `docs/control-center-integration.md`
+- `examples/example-control-center-pairing.md`
+
 ---
 
 ## 仓库结构
 
 ```text
-openclaw-multiagent-blueprint/
+openclaw-agent-team/
 ├─ README.md
 ├─ LICENSE
 ├─ prompt/
@@ -101,10 +110,12 @@ openclaw-multiagent-blueprint/
 │  ├─ routing-rules.md
 │  ├─ risk-and-review.md
 │  ├─ openclaw-adaptation.md
-│  └─ rollout-checklist.md
+│  ├─ rollout-checklist.md
+│  └─ control-center-integration.md
 └─ examples/
    ├─ example-user-requests.md
-   └─ example-delegation-patterns.md
+   ├─ example-delegation-patterns.md
+   └─ example-control-center-pairing.md
 ```
 
 ---
@@ -116,6 +127,7 @@ openclaw-multiagent-blueprint/
 - 多 agent 协作规范沉淀
 - 提示词即插即用
 - 团队分工快速复制
+- 与控制中心形成“制度层 + 观察层”的组合
 
 ---
 
@@ -124,10 +136,18 @@ openclaw-multiagent-blueprint/
 - [x] 项目初始化
 - [x] 单段提示词草案
 - [x] 团队规则草案
+- [x] GitHub 仓库发布
+- [x] Control Center 集成说明
 - [ ] OpenClaw 多实例迁移说明补全
-- [ ] GitHub 发布
 - [ ] 使用示例补全
 - [ ] 精简版/完整版提示词双版本固化
+- [ ] 深度联动设计（可选）
+
+---
+
+## 仓库地址
+
+- https://github.com/MontellaGreat/openclaw-agent-team
 
 ---
 
