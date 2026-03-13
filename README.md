@@ -30,7 +30,9 @@
 - 一份片场调度规则
 - 一套片场子 agent 输入规则
 - 一份主 Agent 决策流程
-- 一套复杂任务示例流程
+- 一套简单/复杂任务示例流程
+- 一份安装文档
+- 一份路线图与更新日志
 
 ---
 
@@ -76,10 +78,18 @@
 - `rules/pianchang-edit-input.md`
 
 示例流程见：
+- `examples/simple-task-playbook.md`
 - `examples/complex-task-playbook.md`
 
 安装说明见：
 - `INSTALL.md`
+
+项目管理见：
+- `ROADMAP.md`
+- `CHANGELOG.md`
+
+英文说明见：
+- `README.en.md`
 
 ---
 
@@ -122,7 +132,10 @@
 ```text
 openclaw-agent-team/
 ├─ README.md
+├─ README.en.md
 ├─ INSTALL.md
+├─ CHANGELOG.md
+├─ ROADMAP.md
 ├─ LICENSE
 ├─ prompt/
 │  ├─ one-shot-prompt.md
@@ -148,6 +161,7 @@ openclaw-agent-team/
    ├─ example-user-requests.md
    ├─ example-delegation-patterns.md
    ├─ example-control-center-pairing.md
+   ├─ simple-task-playbook.md
    └─ complex-task-playbook.md
 ```
 
