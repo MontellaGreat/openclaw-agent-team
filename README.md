@@ -34,6 +34,7 @@
 - 一份安装文档
 - 一份路线图与更新日志
 - 一套任务生命周期、交接协议、质量门禁与复杂度分级说明
+- 一套 v1 发布准备文档
 
 ---
 
@@ -93,6 +94,11 @@
 - `ROADMAP.md`
 - `CHANGELOG.md`
 
+v1 发布准备见：
+- `docs/v1-positioning.md`
+- `RELEASE_NOTES_v1.md`
+- `PUBLISH_CHECKLIST.md`
+
 英文说明见：
 - `README.en.md`
 
@@ -142,6 +148,8 @@ openclaw-agent-team/
 ├─ INSTALL.md
 ├─ CHANGELOG.md
 ├─ ROADMAP.md
+├─ RELEASE_NOTES_v1.md
+├─ PUBLISH_CHECKLIST.md
 ├─ LICENSE
 ├─ prompt/
 │  ├─ one-shot-prompt.md
@@ -162,17 +170,22 @@ openclaw-agent-team/
 │  ├─ task-lifecycle.md
 │  ├─ handoff-protocol.md
 │  ├─ review-quality-gates.md
-│  └─ task-complexity-levels.md
+│  ├─ task-complexity-levels.md
+│  ├─ faq.md
+│  ├─ troubleshooting.md
+│  ├─ diagrams.md
+│  └─ v1-positioning.md
 ├─ rules/
 │  ├─ pianchang-image-input.md
 │  ├─ pianchang-video-input.md
 │  └─ pianchang-edit-input.md
-└─ examples/
-   ├─ example-user-requests.md
-   ├─ example-delegation-patterns.md
-   ├─ example-control-center-pairing.md
-   ├─ simple-task-playbook.md
-   └─ complex-task-playbook.md
+├─ examples/
+│  ├─ example-user-requests.md
+│  ├─ example-delegation-patterns.md
+│  ├─ example-control-center-pairing.md
+│  ├─ simple-task-playbook.md
+│  └─ complex-task-playbook.md
+└─ team-config.example.yaml
 ```
 
 ---
