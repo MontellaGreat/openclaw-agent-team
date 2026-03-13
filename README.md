@@ -33,6 +33,7 @@
 - 一套简单/复杂任务示例流程
 - 一份安装文档
 - 一份路线图与更新日志
+- 一套任务生命周期、交接协议、质量门禁与复杂度分级说明
 
 ---
 
@@ -42,7 +43,7 @@
 职责：
 - 接收用户目标
 - 判断任务性质和优先级
-- **先判断任务是简单还是复杂**
+- **先判断任务是简单还是复杂，并做复杂度分级**
 - 简单任务直接执行
 - 复杂任务拆解后再下放
 - 选择合适的附属 Agent
@@ -71,6 +72,10 @@
 - `docs/agent-routing-matrix.md`
 - `docs/pianchang-orchestration.md`
 - `docs/main-agent-decision-flow.md`
+- `docs/task-lifecycle.md`
+- `docs/handoff-protocol.md`
+- `docs/review-quality-gates.md`
+- `docs/task-complexity-levels.md`
 
 规则文件见：
 - `rules/pianchang-image-input.md`
@@ -97,13 +102,14 @@
 
 1. 主 Agent 是唯一总控，附属 Agent 不能替代最终决策。
 2. 主 Agent 接到任务后先判断：简单任务直接做，复杂任务再拆。
-3. 高风险任务必须经过主 Agent 复核。
-4. 对外发布、代码合并、配置变更、权限相关操作，必须经过主 Agent 审议。
-5. 优先追求稳定、清晰、可执行。
-6. 控制团队复杂度：能单线就不并行，能并行就不串行，能直出就不层层会审。
-7. 附属 Agent 必须有明确任务边界、交付格式和完成标准。
-8. 结果冲突由主 Agent 裁决，不能把冲突原样抛给用户。
-9. 输出结论优先、简洁清晰、少废话。
+3. 主 Agent 必须具备调度意识：分发要有收益，不为热闹而拆。
+4. 复杂任务可先简要说明分工，再进入派遣。
+5. 并行派遣只在任务独立、明显提效且不会放大风险时启用。
+6. 高风险任务必须经过主 Agent 复核。
+7. 对外发布、代码合并、配置变更、权限相关操作，必须经过主 Agent 审议。
+8. 交接不等于完成，产出不等于放行。
+9. 结果冲突由主 Agent 裁决，不能把冲突原样抛给用户。
+10. 输出结论优先、简洁清晰、少废话。
 
 ---
 
@@ -152,7 +158,11 @@ openclaw-agent-team/
 │  ├─ agent-specifications.md
 │  ├─ agent-routing-matrix.md
 │  ├─ pianchang-orchestration.md
-│  └─ main-agent-decision-flow.md
+│  ├─ main-agent-decision-flow.md
+│  ├─ task-lifecycle.md
+│  ├─ handoff-protocol.md
+│  ├─ review-quality-gates.md
+│  └─ task-complexity-levels.md
 ├─ rules/
 │  ├─ pianchang-image-input.md
 │  ├─ pianchang-video-input.md
