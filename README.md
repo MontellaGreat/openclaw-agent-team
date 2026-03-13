@@ -59,7 +59,6 @@
   - 片场-生图
   - 片场-视频
   - 片场-修图
-  - 片场-保留位（等待第 4 个子 agent 定义）
 
 详细规格见：
 - `docs/agent-specifications.md`
@@ -68,8 +67,8 @@
 
 规则文件见：
 - `rules/pianchang-image-input.md`
+- `rules/pianchang-video-input.md`
 - `rules/pianchang-edit-input.md`
-- `rules/pianchang-video-input.md`（待接入）
 
 ---
 
@@ -129,8 +128,8 @@ openclaw-agent-team/
 │  └─ pianchang-orchestration.md
 ├─ rules/
 │  ├─ pianchang-image-input.md
-│  ├─ pianchang-edit-input.md
-│  └─ pianchang-video-input.md (pending)
+│  ├─ pianchang-video-input.md
+│  └─ pianchang-edit-input.md
 └─ examples/
    ├─ example-user-requests.md
    ├─ example-delegation-patterns.md
