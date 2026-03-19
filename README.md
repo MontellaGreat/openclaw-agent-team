@@ -2,6 +2,21 @@
 
 一个可直接复用的 **OpenClaw 多 Agent 分工方案**。
 
+---
+
+## 目录
+
+- [这是什么](#这是什么)
+- [角色设计](#角色设计)
+- [核心原则](#核心原则)
+- [快速开始](#快速开始)
+- [推荐阅读路径](#推荐阅读路径)
+- [关键文档索引](#关键文档索引)
+- [适用场景](#适用场景)
+- [仓库结构](#仓库结构)
+- [仓库地址](#仓库地址)
+- [许可证](#许可证)
+
 目标：
 - 用一段提示词定义主 Agent + 附属 Agent 的职责边界
 - 让主 Agent 负责总控、分发、复核、放行
@@ -34,6 +49,9 @@
 - 一份安装文档
 - 一份路线图与更新日志
 - 一套任务生命周期、交接协议、质量门禁与复杂度分级说明
+- 一套可直接落地的 workspace 模板
+- 一份 OpenClaw 配置示例
+- 一组高频任务 recipes
 - 一套 v1 发布准备文档
 
 ---
@@ -89,6 +107,7 @@
 
 安装说明见：
 - `INSTALL.md`
+- `QUICKSTART.md`
 
 项目管理见：
 - `ROADMAP.md`
@@ -139,18 +158,107 @@ v1 发布准备见：
 
 ---
 
+## 推荐阅读路径
+
+### 如果你只想先跑起来
+1. 先读 `QUICKSTART.md`
+2. 再读 `prompt/PROMPT_SHORT.md`
+3. 再读 `INSTALL.md`
+4. 最后用 `examples/simple-task-playbook.md` 做一次最小验证
+
+### 如果你要按团队方式长期使用
+1. 先读 `docs/v1-positioning.md`
+2. 再读 `docs/main-agent-decision-flow.md`
+3. 再读 `docs/agent-routing-matrix.md`
+4. 再读 `docs/task-lifecycle.md`
+5. 最后补 `docs/handoff-protocol.md` 与 `docs/review-quality-gates.md`
+
+### 如果你准备做真实多 Agent 接入
+1. 先读 `QUICKSTART.md`
+2. 再读 `INSTALL.md`
+3. 再读 `docs/workspace-bootstrap.md`
+4. 再读 `openclaw.example.json`
+5. 再看 `docs/recipes.md`
+
+---
+
+## 关键文档索引
+
+### 1. 定位与整体设计
+- `docs/v1-positioning.md`
+- `docs/architecture.md`
+- `docs/openclaw-adaptation.md`
+
+### 2. 主 Agent 判断与分发
+- `docs/main-agent-decision-flow.md`
+- `docs/routing-rules.md`
+- `docs/agent-routing-matrix.md`
+- `docs/task-complexity-levels.md`
+
+### 3. 生命周期、交接与复核
+- `docs/task-lifecycle.md`
+- `docs/handoff-protocol.md`
+- `docs/review-quality-gates.md`
+- `docs/risk-and-review.md`
+- `docs/doctor.md`
+
+### 4. 各角色职责说明
+- `docs/agent-specifications.md`
+- `docs/pianchang-orchestration.md`
+
+### 5. 接入与模板
+- `QUICKSTART.md`
+- `INSTALL.md`
+- `docs/workspace-bootstrap.md`
+- `openclaw.example.json`
+- `workspace-template/SOUL.md`
+- `workspace-template/AGENTS.md`
+- `workspace-template/IDENTITY.md`
+- `workspace-template/USER.md`
+- `workspace-template/TOOLS.md`
+- `workspace-template/HEARTBEAT.md`
+
+### 6. 示例与高频工作流
+- `examples/simple-task-playbook.md`
+- `examples/complex-task-playbook.md`
+- `examples/example-delegation-patterns.md`
+- `examples/example-user-requests.md`
+- `docs/recipes.md`
+- `docs/faq.md`
+- `docs/troubleshooting.md`
+
+---
+
+## 适用场景
+
+适合：
+- 想把 OpenClaw 从“单个万能 Agent”升级成“有边界的团队协作模式”
+- 想让主 Agent 保持总控权，而不是沦为消息中转站
+- 想给写作、研究、研发、测试、多媒体任务建立稳定分发规则
+- 想先用 Prompt 跑通，再逐步接入真实子 Agent
+- 想把这套规则长期沉淀为 workspace 模板
+
+不太适合：
+- 只想做一个极简单体 Agent，且没有分工需要
+- 当前场景几乎没有复杂任务、风险任务或跨专项协作
+- 还没准备好维护一套角色边界与交接规范
+
+---
+
 ## 仓库结构
 
 ```text
 openclaw-agent-team/
 ├─ README.md
 ├─ README.en.md
+├─ QUICKSTART.md
 ├─ INSTALL.md
 ├─ CHANGELOG.md
 ├─ ROADMAP.md
 ├─ RELEASE_NOTES_v1.md
 ├─ PUBLISH_CHECKLIST.md
 ├─ LICENSE
+├─ openclaw.example.json
 ├─ prompt/
 │  ├─ one-shot-prompt.md
 │  ├─ PROMPT_SHORT.md
@@ -171,6 +279,9 @@ openclaw-agent-team/
 │  ├─ handoff-protocol.md
 │  ├─ review-quality-gates.md
 │  ├─ task-complexity-levels.md
+│  ├─ doctor.md
+│  ├─ recipes.md
+│  ├─ workspace-bootstrap.md
 │  ├─ faq.md
 │  ├─ troubleshooting.md
 │  ├─ diagrams.md
@@ -185,6 +296,13 @@ openclaw-agent-team/
 │  ├─ example-control-center-pairing.md
 │  ├─ simple-task-playbook.md
 │  └─ complex-task-playbook.md
+├─ workspace-template/
+│  ├─ SOUL.md
+│  ├─ AGENTS.md
+│  ├─ IDENTITY.md
+│  ├─ USER.md
+│  ├─ TOOLS.md
+│  └─ HEARTBEAT.md
 └─ team-config.example.yaml
 ```
 

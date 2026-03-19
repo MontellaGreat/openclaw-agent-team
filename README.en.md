@@ -2,6 +2,19 @@
 
 A reusable **multi-agent operating blueprint for OpenClaw**.
 
+---
+
+## Contents
+- [Goal](#goal)
+- [What this repo is](#what-this-repo-is)
+- [Team Structure](#team-structure)
+- [Core Rule](#core-rule)
+- [Quick Paths](#quick-paths)
+- [Key Files](#key-files)
+- [Best Fit](#best-fit)
+- [Repo](#repo)
+- [License](#license)
+
 ## Goal
 - Define a main agent and specialist sub-agents with a single prompt
 - Keep the main agent in charge of orchestration, review, and release decisions
@@ -25,6 +38,11 @@ This repo provides:
 - prompt variants
 - migration guidance
 - install guidance
+- quickstart guidance
+- doctor / troubleshooting guidance
+- workspace templates
+- config example
+- recipes for common workflows
 - decision flow for the main agent
 - task playbooks
 - multimedia orchestration rules
@@ -67,10 +85,36 @@ The operating model also includes:
 - review gates
 - complexity levels
 - parallel delegation rules
+- workspace templating
+- reusable operating recipes
+
+---
+
+## Quick Paths
+### If you just want to try it fast
+1. Read `QUICKSTART.md`
+2. Read `prompt/PROMPT_SHORT.md`
+3. Read `INSTALL.md`
+4. Validate with `examples/simple-task-playbook.md`
+
+### If you want the full operating model
+1. Read `docs/v1-positioning.md`
+2. Read `docs/main-agent-decision-flow.md`
+3. Read `docs/agent-routing-matrix.md`
+4. Read `docs/task-lifecycle.md`
+5. Finish with `docs/handoff-protocol.md` and `docs/review-quality-gates.md`
+
+### If you want to wire real sub-agents
+1. Read `QUICKSTART.md`
+2. Read `INSTALL.md`
+3. Read `docs/workspace-bootstrap.md`
+4. Review `openclaw.example.json`
+5. Review `docs/recipes.md`
 
 ---
 
 ## Key Files
+- `QUICKSTART.md`
 - `INSTALL.md`
 - `prompt/PROMPT_SHORT.md`
 - `prompt/PROMPT_FULL.md`
@@ -81,10 +125,26 @@ The operating model also includes:
 - `docs/review-quality-gates.md`
 - `docs/task-complexity-levels.md`
 - `docs/pianchang-orchestration.md`
-- `examples/simple-task-playbook.md`
-- `examples/complex-task-playbook.md`
+- `docs/doctor.md`
+- `docs/recipes.md`
+- `docs/workspace-bootstrap.md`
+- `openclaw.example.json`
+- `workspace-template/SOUL.md`
+- `workspace-template/AGENTS.md`
 
 ---
+
+## Best Fit
+Good fit when you want to:
+- keep a main agent in charge instead of turning it into a message relay
+- define clean role boundaries for writing, research, engineering, testing, and multimedia work
+- start with prompts first, then gradually connect real sub-agents
+- add review gates for risky actions like publishing, code merge, config changes, or permissions
+- turn the method into reusable workspace files instead of relying on one giant prompt
+
+Less useful when you only need:
+- a single lightweight agent with almost no task decomposition
+- no specialist routing, no review process, and no handoff discipline
 
 ## Repo
 - https://github.com/MontellaGreat/openclaw-agent-team
