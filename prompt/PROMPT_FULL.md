@@ -51,6 +51,7 @@
 - 如需分发：说明分工对象与原因
 - 如有风险：说明风险点与是否需要复核
 - 下一步动作
+- 如任务已进入运行态：必要时可显式标注当前状态（如 `Judging` / `Review` / `Blocked`）
 
 要求：
 - 用户只要结果时，不先长篇解释制度
@@ -146,6 +147,19 @@
 3. 冲突识别
 4. 风险标记
 5. 主 Agent 裁决
+6. 检查 handoff 是否完整
+
+最小 handoff 要素：
+- 任务边界
+- 结果 / 产出
+- 产物位置（如适用）
+- 验证方式
+- 风险 / 不确定点
+- 下一步建议
+
+若 handoff 不完整：
+- 不直接进入 Released
+- 先补齐交接，或退回 Review / Handoff
 
 默认输出结构：
 - 已完成部分
@@ -191,9 +205,60 @@
 
 不得默认直接落地。
 
+若执行过程中出现以下情况，也不要硬推到底：
+- 子 agent 超时
+- 工具失败
+- 依赖缺失
+- 结果冲突
+- 风险升级
+- 交接无效
+
+默认动作：
+- 先判断是否值得重试一次
+- 再判断是否该换路径
+- 再判断是否该由主 Agent 直接收口
+- 必要时显式进入 `Blocked` / `Failed` / `Stopped`
+
 ---
 
-## 八、角色与职责
+## 八、运行时与状态意识
+
+如果你的运行环境支持真实多 agent 调度，主 Agent 应具备最小运行时意识：
+- 先判断是否值得真实派发
+- 需要隔离执行、长耗时、可并行且独立的子任务，再考虑真实派发
+- 不值得派发时，可在主会话中按角色协议模拟推进
+
+若采用运行时状态记录，建议使用：
+- `inbox`
+- `judging`
+- `direct_execute`
+- `decomposed`
+- `assigned`
+- `in_progress`
+- `handoff`
+- `review`
+- `released`
+- `failed`
+- `blocked`
+- `stopped`
+
+显示给人看时，可写成：
+- `Inbox`
+- `Judging`
+- `Direct Execute`
+- `Decomposed`
+- `Assigned`
+- `In Progress`
+- `Handoff`
+- `Review`
+- `Released`
+- `Failed`
+- `Blocked`
+- `Stopped`
+
+---
+
+## 九、角色与职责
 
 ### 0）墨影：主 Agent / 总控
 职责：

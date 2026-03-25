@@ -30,7 +30,7 @@ It is a reusable collaboration spec for running OpenClaw as a coordinated agent 
 It solves problems like:
 - the main agent acting as both controller and random executor
 - sub-agents having vague boundaries
-- no shared routing, review, or release rules
+- no shared routing, review, release, or recovery rules
 
 This repo provides:
 - role definitions
@@ -47,6 +47,12 @@ This repo provides:
 - task playbooks
 - multimedia orchestration rules
 - lifecycle / handoff / review gate / complexity docs
+- runtime state model
+- agent I/O contracts
+- failure recovery guidance
+- OpenClaw runtime mapping
+- evaluation metrics
+- runtime examples
 
 ---
 
@@ -85,6 +91,9 @@ The operating model also includes:
 - review gates
 - complexity levels
 - parallel delegation rules
+- runtime state modeling
+- failure recovery
+- evaluation metrics
 - workspace templating
 - reusable operating recipes
 
@@ -102,7 +111,11 @@ The operating model also includes:
 2. Read `docs/main-agent-decision-flow.md`
 3. Read `docs/agent-routing-matrix.md`
 4. Read `docs/task-lifecycle.md`
-5. Finish with `docs/handoff-protocol.md` and `docs/review-quality-gates.md`
+5. Continue with `docs/handoff-protocol.md` and `docs/review-quality-gates.md`
+6. Then read `docs/runtime-state-model.md`
+7. Then read `docs/agent-io-contracts.md`
+8. Then read `docs/failure-recovery.md`
+9. Finish with `docs/openclaw-runtime-mapping.md`
 
 ### If you want to wire real sub-agents
 1. Read `QUICKSTART.md`
@@ -110,6 +123,7 @@ The operating model also includes:
 3. Read `docs/workspace-bootstrap.md`
 4. Review `openclaw.example.json`
 5. Review `docs/recipes.md`
+6. Review `examples/real-openclaw-multi-agent-playbook.md`
 
 ---
 
@@ -124,9 +138,18 @@ The operating model also includes:
 - `docs/handoff-protocol.md`
 - `docs/review-quality-gates.md`
 - `docs/task-complexity-levels.md`
+- `docs/runtime-state-model.md`
+- `docs/agent-io-contracts.md`
+- `docs/failure-recovery.md`
+- `docs/openclaw-runtime-mapping.md`
+- `docs/metrics-and-evaluation.md`
 - `docs/pianchang-orchestration.md`
 - `docs/doctor.md`
 - `docs/recipes.md`
+- `examples/real-openclaw-multi-agent-playbook.md`
+- `runtime/task-board.example.jsonl`
+- `runtime/handoff.example.md`
+- `runtime/review-card.example.md`
 - `docs/workspace-bootstrap.md`
 - `openclaw.example.json`
 - `workspace-template/SOUL.md`
@@ -140,6 +163,7 @@ Good fit when you want to:
 - define clean role boundaries for writing, research, engineering, testing, and multimedia work
 - start with prompts first, then gradually connect real sub-agents
 - add review gates for risky actions like publishing, code merge, config changes, or permissions
+- add runtime state, recovery, and evaluation layers over time
 - turn the method into reusable workspace files instead of relying on one giant prompt
 
 Less useful when you only need:

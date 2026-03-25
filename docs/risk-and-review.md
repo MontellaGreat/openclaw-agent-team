@@ -1,5 +1,11 @@
 # Risk and Review
 
+> 本文件是高风险与复核规则的速查摘要。
+> 若你需要完整版本，请优先阅读：
+> - `docs/review-quality-gates.md`
+> - `docs/failure-recovery.md`
+> - `docs/metrics-and-evaluation.md`
+
 ## 高风险任务
 - 配置变更
 - 权限变更

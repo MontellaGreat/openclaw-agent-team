@@ -69,6 +69,15 @@
 
 ---
 
-## 六、一句话原则
+## 六、运行时样例
+
+若你希望把 review 结论写成结构化卡片，可参考：
+- `runtime/review-card.example.md`
+- `docs/failure-recovery.md`
+- `docs/metrics-and-evaluation.md`
+
+---
+
+## 七、一句话原则
 
 > 能产出不代表能放行；放行前必须过门。

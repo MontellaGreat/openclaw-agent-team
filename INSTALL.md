@@ -215,9 +215,24 @@
 - [ ] 子 agent 映射已确认
 - [ ] 高风险复核规则已保留
 - [ ] 片场 3 个子能力逻辑已明确
+- [ ] 已理解 `docs/runtime-state-model.md`
+- [ ] 已理解 `docs/agent-io-contracts.md`
+- [ ] 已理解 `docs/failure-recovery.md`
 - [ ] 至少跑过 1 个简单任务
 - [ ] 至少跑过 1 个复杂任务
 - [ ] 至少跑过 1 个高风险模拟任务
+
+---
+
+## 九、若要进入更真实的运行阶段
+
+当你已经跑通最小闭环后，建议继续补：
+- `docs/openclaw-runtime-mapping.md`
+- `docs/metrics-and-evaluation.md`
+- `examples/real-openclaw-multi-agent-playbook.md`
+- `runtime/task-board.example.jsonl`
+- `runtime/handoff.example.md`
+- `runtime/review-card.example.md`
 - [ ] 已确认主 Agent 不会变成中转站
 - [ ] 已确认子 Agent 不会越权拍板
 

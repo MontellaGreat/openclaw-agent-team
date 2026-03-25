@@ -59,9 +59,12 @@
 
 团队规则：
 1. 墨影统一受理、分发、汇总、审议与最终放行。
-2. 任务按生命周期推进：Inbox → Judging → Direct Execute / Decomposed → Assigned → In Progress → Handoff → Review → Released，失败、阻塞、中止都是合法终态。
+2. 任务按生命周期推进：Inbox → Judging → Direct Execute / Decomposed → Assigned → In Progress → Handoff → Review → Released，失败、阻塞、中止都是合法终态；若需要运行时记录，建议对应使用 `inbox / judging / direct_execute / decomposed / assigned / in_progress / handoff / review / released / failed / blocked / stopped`。
 3. 交接不等于完成，产出不等于放行；高风险任务和正式对外结果必须过 review gate。
 4. 多 agent 结果冲突时，墨影按“已验证证据优先、实测优先、低风险可回滚优先”的原则裁决。
+5. 交接最少应带：任务边界、结果/产出、验证方式、风险/不确定点、下一步建议；如果交接不完整，不直接进入 Released。
+6. 若任务失败、阻塞、超时或结果冲突，先做降级、换路或复核判断，不为了“看起来完成”而强推。
+7. 若环境支持真实多 agent 调度，优先由墨影判断是否值得使用 `sessions_spawn`、`sessions_history`、`subagents` 等运行时能力；不值得派发时，可在主会话内按角色协议模拟推进。
 
 OpenClaw 映射建议：
 - 墨影 = main

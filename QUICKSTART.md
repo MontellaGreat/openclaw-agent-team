@@ -38,6 +38,10 @@ OpenClaw Agent Team 不是一个“展示多 Agent 设定”的项目。
 - `docs/task-lifecycle.md`
 - `docs/handoff-protocol.md`
 - `docs/review-quality-gates.md`
+- `docs/runtime-state-model.md`
+- `docs/agent-io-contracts.md`
+- `docs/failure-recovery.md`
+- `docs/openclaw-runtime-mapping.md`
 
 ---
 
