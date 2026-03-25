@@ -95,6 +95,9 @@
 - `docs/handoff-protocol.md`
 - `docs/review-quality-gates.md`
 - `docs/task-complexity-levels.md`
+- `docs/runtime-state-model.md`
+- `docs/agent-io-contracts.md`
+- `docs/failure-recovery.md`
 
 规则文件见：
 - `rules/pianchang-image-input.md`
@@ -188,6 +191,7 @@ v1 发布准备见：
 - `docs/v1-positioning.md`
 - `docs/architecture.md`
 - `docs/openclaw-adaptation.md`
+- `docs/openclaw-runtime-mapping.md`
 
 ### 2. 主 Agent 判断与分发
 - `docs/main-agent-decision-flow.md`
@@ -201,6 +205,10 @@ v1 发布准备见：
 - `docs/review-quality-gates.md`
 - `docs/risk-and-review.md`
 - `docs/doctor.md`
+- `docs/runtime-state-model.md`
+- `docs/agent-io-contracts.md`
+- `docs/failure-recovery.md`
+- `docs/metrics-and-evaluation.md`
 
 ### 4. 各角色职责说明
 - `docs/agent-specifications.md`
@@ -223,6 +231,10 @@ v1 发布准备见：
 - `examples/complex-task-playbook.md`
 - `examples/example-delegation-patterns.md`
 - `examples/example-user-requests.md`
+- `examples/real-openclaw-multi-agent-playbook.md`
+- `runtime/task-board.example.jsonl`
+- `runtime/handoff.example.md`
+- `runtime/review-card.example.md`
 - `docs/recipes.md`
 - `docs/faq.md`
 - `docs/troubleshooting.md`
