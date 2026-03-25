@@ -1,296 +1,370 @@
 # OpenClaw Agent Team
 
-一个可直接复用的 **OpenClaw 多 Agent 分工方案**。
+一个面向 OpenClaw 的 **多 Agent 协作治理规范仓**。
+
+> 它不是多 Agent runtime 引擎，也不是控制台源码仓。  
+> 它负责把：**分工、边界、委派、交接、复核、放行、观测、上线** 这整套规则钉清楚。
+
+<p align="center">
+  <img src="https://img.shields.io/badge/OpenClaw-Multi--Agent-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Main%20Agent-%E5%A2%A8%E5%BD%B1-black?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Coordination-%E6%89%BF%E6%9E%A2-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Governance-3%20Layers-green?style=for-the-badge" />
+</p>
 
 ---
 
 ## 目录
 
 - [这是什么](#这是什么)
-- [角色设计](#角色设计)
-- [核心原则](#核心原则)
+- [为什么这套方案有价值](#为什么这套方案有价值)
+- [当前项目定位](#当前项目定位)
+- [三层结构](#三层结构)
+- [团队结构](#团队结构)
 - [快速开始](#快速开始)
 - [推荐阅读路径](#推荐阅读路径)
-- [关键文档索引](#关键文档索引)
+- [关键文档地图](#关键文档地图)
+- [示例与 runtime 样例](#示例与-runtime-样例)
 - [适用场景](#适用场景)
-- [仓库结构](#仓库结构)
+- [项目现状](#项目现状)
 - [仓库地址](#仓库地址)
 - [许可证](#许可证)
-
-目标：
-- 用一段提示词定义主 Agent + 附属 Agent 的职责边界
-- 让主 Agent 负责总控、分发、复核、放行
-- 让附属 Agent 各司其职，避免越权
-- 尽量做到：**换一台 OpenClaw，也能靠一段提示词快速启用**
 
 ---
 
 ## 这是什么
 
-这是一个“多 Agent 团队协作蓝图”，不是某个特定业务项目。
+`openclaw-agent-team` 现在不是一个“只放 prompt 的仓库”。
 
-它解决的问题是：
-- 主 Agent 容易既当总控又亲自下场，角色混乱
-- 附属 Agent 没边界，容易越权、跑偏、重复劳动
-- 缺少统一的任务分发、审议、放行和风险控制规则
-- 多步骤任务缺少明确的编排协调层
+它是一套可以直接复用的：
+- **主 Agent 总控规则**
+- **附属 Agent 分工方案**
+- **多步骤任务编排机制**
+- **交接 / review / release 纪律**
+- **runtime 观测口径**
+- **control center 接入契约**
 
-这个项目给出：
-- 一套角色定义
-- 一套团队调度规则
-- 一段可直接复制使用的总提示词
-- 一份适配 OpenClaw 的落地说明
-- 一份与 `openclaw-control-center` 的集成说明
-- 一份更细的 agent 职责规格说明
-- 一份任务分发矩阵
-- 一份片场调度规则
-- 一套片场子 agent 输入规则
-- 一份主 Agent 决策流程
-- 一套简单/复杂任务示例流程
-- 一份安装文档
-- 一份路线图与更新日志
-- 一套任务生命周期、交接协议、质量门禁与复杂度分级说明
-- 一套负边界、委派协议与 session hygiene 规则
-- 一套第三层治理文档（release / observability / roster / rollout / control center）
-- 一套可直接落地的 workspace 模板
-- 一份 OpenClaw 配置示例
-- 一组高频任务 recipes
-- 一套 v1 / v2 演进可用的制度层文档
+你可以把它理解成：
+
+> **OpenClaw 多 Agent 的制度层 / 治理层 / 协作规范层。**
+
+它解决的核心问题是：
+- 主 Agent 既当总控又亲自乱下场
+- specialist 没边界，容易越权或重复劳动
+- 多步骤任务没人协调，handoff 容易散
+- review、release、risk 没有稳定口径
+- runtime 和 control center 没有统一字段语言
 
 ---
 
-## 角色设计
+## 为什么这套方案有价值
 
-### 主 Agent：墨影
-职责：
-- 接收用户目标
-- 判断任务性质和优先级
-- 先判断任务是简单还是复杂，并做复杂度分级
-- 简单任务直接执行
-- 复杂任务拆解后再下放
-- 决定由谁承担主责
-- 做最终审议
-- 做风险监察
-- 做质量把控
-- 决定是否放行
+很多多 Agent 项目会停在这一步：
+- 角色很多
+- prompt 很长
+- 但运行一久就开始乱
 
-定位：**唯一总控，不下放最终审议权**。
+这个项目的重点不是“再发明几个 agent”，而是把下面这些东西补硬：
+- 谁做什么
+- 谁不该做什么
+- 什么时候值得派发
+- 怎么交接
+- 怎么审
+- 怎么放
+- 怎么观测
+- 怎么分阶段上线
 
-### 编排协调层：承枢
-职责：
-- 在多步骤任务中承担编排协调劳动
-- 跟踪状态推进
-- 回收 handoff
-- 暴露阻塞、依赖与缺口
-- 向墨影提交阶段汇总
+所以它更适合：
+- 想长期跑，而不是只演示一下
+- 想让主 Agent 保持总控，而不是退化成消息中转站
+- 想把制度层和 runtime / control center 接起来的人
 
-定位：**流程推进位，不替代墨影拍板**。
+---
 
-### 附属 Agent
-- 笔官：内容成稿
-- 探针：研究情报
-- 铁手：研发执行
-- 问隙：测试排障 / QA / 审查
-- 观象：日常运营 / 例行执行 / structured ops
-- 片场：多媒体调度中枢
-  - 片场-生图
-  - 片场-视频
-  - 片场-修图
+## 当前项目定位
 
-详细规格见：
-- `docs/agent-specifications.md`
-- `docs/agent-routing-matrix.md`
-- `docs/pianchang-orchestration.md`
-- `docs/main-agent-decision-flow.md`
-- `docs/task-lifecycle.md`
-- `docs/handoff-protocol.md`
-- `docs/negative-boundaries.md`
-- `docs/a2a-delegation-protocol.md`
-- `docs/session-hygiene.md`
-- `docs/review-quality-gates.md`
-- `docs/task-complexity-levels.md`
-- `docs/runtime-state-model.md`
-- `docs/agent-io-contracts.md`
-- `docs/failure-recovery.md`
+一句话：
 
-规则文件见：
-- `rules/pianchang-image-input.md`
-- `rules/pianchang-video-input.md`
-- `rules/pianchang-edit-input.md`
+> `openclaw-agent-team` 是一个 **面向 OpenClaw 的多 Agent 协作治理规范仓**。
 
-示例流程见：
-- `examples/simple-task-playbook.md`
-- `examples/complex-task-playbook.md`
-- `examples/example-delegation-patterns.md`
-- `examples/governance-playbook-release-chain.md`
-- `examples/governance-playbook-ops-escalation.md`
+它不是：
+- 多 Agent runtime 框架实现仓
+- control center UI 源码仓
+- 自动调度引擎仓
 
-安装说明见：
-- `INSTALL.md`
-- `QUICKSTART.md`
-
-项目管理见：
-- `ROADMAP.md`
-- `CHANGELOG.md`
+它主要负责：
+- 团队分工
+- 风险控制
+- handoff 规范
+- review / release 纪律
+- observability 口径
+- rollout 路线
+- control center contract
 
 正式总结见：
 - `docs/final-audit-and-upgrade-summary.md`
 - `docs/upgrade-announcement.md`
 
-英文说明见：
-- `README.en.md`
+---
+
+## 三层结构
+
+本项目目前已经形成三层完整结构。
+
+### 第一层：组织与流程
+解决：
+- 主 Agent 怎么判断
+- specialist 怎么分工
+- 多步骤任务怎么拆
+- lifecycle / handoff / review 怎么走
+
+核心文档：
+- `docs/main-agent-decision-flow.md`
+- `docs/agent-routing-matrix.md`
+- `docs/task-lifecycle.md`
+- `docs/handoff-protocol.md`
+- `docs/review-quality-gates.md`
+
+### 第二层：边界与运行纪律
+解决：
+- 谁不该做什么
+- 委派请求怎么结构化
+- session 什么时候新开 / 复用 / 停用
+
+核心文档：
+- `docs/negative-boundaries.md`
+- `docs/a2a-delegation-protocol.md`
+- `docs/session-hygiene.md`
+
+### 第三层：治理闭环
+解决：
+- 什么叫 draft / reviewable / releasable / released
+- task board / handoff / review / release 用什么统一字段
+- 团队编组怎么长期稳定
+- 怎么分阶段上线
+- control center 应该看见什么
+
+核心文档：
+- `docs/release-discipline.md`
+- `docs/observability-schema.md`
+- `docs/roster-discipline.md`
+- `docs/staged-rollout.md`
+- `docs/control-center-contract.md`
 
 ---
 
-## 核心原则
+## 团队结构
 
-1. 墨影是唯一总控，附属 Agent 不能替代最终决策。
-2. 墨影接到任务后先判断：简单任务直接做，复杂任务再拆。
-3. 多步骤任务可由承枢承担编排协调劳动，但不替代墨影拍板。
-4. 分发必须带来收益，不为热闹而拆。
-5. 并行派遣只在任务独立、明显提效且不会放大风险时启用。
-6. 高风险任务必须经过墨影复核。
-7. 对外发布、代码合并、配置变更、权限相关操作，必须经过墨影审议。
-8. 交接不等于完成，产出不等于放行。
-9. 结果冲突由墨影裁决，不能把冲突原样抛给用户。
-10. 输出结论优先、简洁清晰、少废话。
+### 主 Agent：墨影
+定位：**唯一总控**
+
+负责：
+- 接收用户目标
+- 判断任务性质、复杂度、风险等级
+- 决定直做 / 拆解 / 复核
+- 做最终裁决
+- 做最终审议与放行
+
+### 编排协调层：承枢
+定位：**流程推进位**
+
+负责：
+- 多步骤任务编排
+- 阶段推进
+- handoff 回收
+- 阻塞暴露
+- 向墨影提交阶段汇总
+
+### specialist 层
+- `探针`：研究情报
+- `笔官`：内容成稿
+- `铁手`：研发执行
+- `问隙`：测试排障 / QA / 审查
+- `观象`：日常运营 / 例行执行 / structured ops
+- `片场`：多媒体调度中枢
+
+详细规格见：
+- `docs/agent-specifications.md`
+- `docs/pianchang-orchestration.md`
 
 ---
 
 ## 快速开始
 
-### 方案 A：只用提示词
-- 精简版：`prompt/PROMPT_SHORT.md`
-- 完整版：`prompt/PROMPT_FULL.md`
-- 单段版：`prompt/one-shot-prompt.md`
+### 方式 A：只先跑 prompt
+适合：
+- 想先验证组织结构是否顺手
+- 暂时不接 runtime / control center
 
-### 方案 B：作为项目模板
-把本仓库连同文档一起放进工作区，在 OpenClaw 中作为团队协作规范使用。
+建议顺序：
+1. `QUICKSTART.md`
+2. `prompt/PROMPT_SHORT.md`
+3. `prompt/one-shot-prompt.md`
 
-### 方案 C：配合 Control Center 使用
-如果你还想要一个可视化控制台来观察多 Agent 的运行状态，可以配合：
-- `TianyiDataScience/openclaw-control-center`
+### 方式 B：作为工作区治理模板
+适合：
+- 想直接把它放进 OpenClaw workspace
+- 想把规则做成长期团队规范
 
-集成说明见：
-- `docs/control-center-integration.md`
-- `examples/example-control-center-pairing.md`
+建议顺序：
+1. `INSTALL.md`
+2. `docs/workspace-bootstrap.md`
+3. `workspace-template/`
+
+### 方式 C：接入真实多 Agent / 控制台
+适合：
+- 想让这套制度进入运行层
+- 想把 control center 也接上
+
+建议顺序：
+1. `docs/openclaw-runtime-mapping.md`
+2. `docs/observability-schema.md`
+3. `docs/control-center-contract.md`
+4. `docs/control-center-integration.md`
 
 ---
 
 ## 推荐阅读路径
 
-### 如果你只想先跑起来
-1. 先读 `QUICKSTART.md`
-2. 再读 `prompt/PROMPT_SHORT.md`
-3. 再读 `INSTALL.md`
-4. 最后用 `examples/simple-task-playbook.md` 做一次最小验证
+### 如果你只想先理解项目
+1. `docs/upgrade-announcement.md`
+2. `README.md`
+3. `docs/final-audit-and-upgrade-summary.md`
 
-### 如果你要按团队方式长期使用
-1. 先读 `docs/v1-positioning.md`
-2. 再读 `docs/main-agent-decision-flow.md`
-3. 再读 `docs/agent-routing-matrix.md`
-4. 再读 `docs/task-lifecycle.md`
-5. 再补 `docs/handoff-protocol.md` 与 `docs/review-quality-gates.md`
-6. 再补 `docs/negative-boundaries.md`
-7. 再补 `docs/a2a-delegation-protocol.md`
-8. 再补 `docs/session-hygiene.md`
-9. 再补 `docs/runtime-state-model.md`
-10. 再补 `docs/agent-io-contracts.md`
-11. 再补 `docs/failure-recovery.md`
-12. 最后看 `docs/openclaw-runtime-mapping.md`
+### 如果你想直接拿来用
+1. `QUICKSTART.md`
+2. `prompt/one-shot-prompt.md`
+3. `docs/main-agent-decision-flow.md`
+4. `docs/agent-routing-matrix.md`
 
-### 如果你准备做真实多 Agent 接入
-1. 先读 `QUICKSTART.md`
-2. 再读 `INSTALL.md`
-3. 再读 `docs/workspace-bootstrap.md`
-4. 再读 `openclaw.example.json`
-5. 再看 `docs/recipes.md`
+### 如果你想理解第二层纪律
+1. `docs/negative-boundaries.md`
+2. `docs/a2a-delegation-protocol.md`
+3. `docs/session-hygiene.md`
+
+### 如果你想理解第三层治理闭环
+1. `docs/release-discipline.md`
+2. `docs/observability-schema.md`
+3. `docs/roster-discipline.md`
+4. `docs/staged-rollout.md`
+5. `docs/control-center-contract.md`
+
+### 如果你准备做 runtime / control center 接入
+1. `docs/openclaw-runtime-mapping.md`
+2. `runtime/task-board.example.jsonl`
+3. `runtime/handoff-event.example.json`
+4. `runtime/release-decision.example.json`
+5. `docs/control-center-integration.md`
 
 ---
 
-## 关键文档索引
+## 关键文档地图
 
 ### 1. 定位与整体设计
 - `docs/v1-positioning.md`
 - `docs/architecture.md`
 - `docs/openclaw-adaptation.md`
-- `docs/openclaw-runtime-mapping.md`
+- `docs/final-audit-and-upgrade-summary.md`
+- `docs/upgrade-announcement.md`
 
-### 2. 主 Agent 判断与分发
+### 2. 判断、分发、编排
 - `docs/main-agent-decision-flow.md`
-- `docs/routing-rules.md`
 - `docs/agent-routing-matrix.md`
+- `docs/routing-rules.md`
 - `docs/task-complexity-levels.md`
+- `docs/agent-specifications.md`
 
-### 3. 生命周期、交接与复核
+### 3. 生命周期、交接、风险与恢复
 - `docs/task-lifecycle.md`
 - `docs/handoff-protocol.md`
+- `docs/review-quality-gates.md`
+- `docs/risk-and-review.md`
+- `docs/failure-recovery.md`
+- `docs/doctor.md`
+
+### 4. 第二层纪律
 - `docs/negative-boundaries.md`
 - `docs/a2a-delegation-protocol.md`
 - `docs/session-hygiene.md`
-- `docs/review-quality-gates.md`
-- `docs/risk-and-review.md`
-- `docs/doctor.md`
-- `docs/runtime-state-model.md`
-- `docs/agent-io-contracts.md`
-- `docs/failure-recovery.md`
+
+### 5. 第三层治理
 - `docs/release-discipline.md`
 - `docs/observability-schema.md`
 - `docs/roster-discipline.md`
 - `docs/staged-rollout.md`
+- `docs/control-center-contract.md`
 - `docs/metrics-and-evaluation.md`
-- `docs/final-audit-and-upgrade-summary.md`
 
-### 4. 各角色职责说明
-- `docs/agent-specifications.md`
-- `docs/pianchang-orchestration.md`
-
-### 5. 接入与模板
-- `QUICKSTART.md`
-- `INSTALL.md`
-- `docs/workspace-bootstrap.md`
+### 6. OpenClaw 接入
+- `docs/openclaw-runtime-mapping.md`
+- `docs/runtime-state-model.md`
+- `docs/agent-io-contracts.md`
+- `docs/control-center-integration.md`
 - `openclaw.example.json`
-- `workspace-template/SOUL.md`
-- `workspace-template/AGENTS.md`
-- `workspace-template/IDENTITY.md`
-- `workspace-template/USER.md`
-- `workspace-template/TOOLS.md`
-- `workspace-template/HEARTBEAT.md`
 
-### 6. 示例与高频工作流
+### 7. 多媒体体系
+- `docs/pianchang-orchestration.md`
+- `rules/pianchang-image-input.md`
+- `rules/pianchang-video-input.md`
+- `rules/pianchang-edit-input.md`
+
+---
+
+## 示例与 runtime 样例
+
+### 示例 playbooks
 - `examples/simple-task-playbook.md`
 - `examples/complex-task-playbook.md`
 - `examples/example-delegation-patterns.md`
-- `examples/example-user-requests.md`
 - `examples/real-openclaw-multi-agent-playbook.md`
+- `examples/governance-playbook-release-chain.md`
+- `examples/governance-playbook-ops-escalation.md`
+
+### runtime 示例
 - `runtime/task-board.example.jsonl`
 - `runtime/handoff.example.md`
+- `runtime/handoff-event.example.json`
 - `runtime/review-card.example.md`
-- `docs/recipes.md`
-- `docs/faq.md`
-- `docs/troubleshooting.md`
+- `runtime/release-decision.example.json`
 
 ---
 
 ## 适用场景
 
 适合：
-- 想把 OpenClaw 从“单个万能 Agent”升级成“有边界的团队协作模式”
-- 想让主 Agent 保持总控权，而不是沦为消息中转站
-- 想给研究、写作、研发、测试、structured ops、多媒体任务建立稳定分工
-- 想先用 Prompt 跑通，再逐步接入真实子 Agent
-- 想把这套规则长期沉淀为 workspace 模板
+- 想给 OpenClaw 建一套清晰的主 Agent + specialist 团队
+- 想让主 Agent 保持总控而不是退化为转发器
+- 想让高风险任务有 review / release 纪律
+- 想给 control center / runtime 一个统一治理口径
+- 想先从 prompt 起步，再逐步接运行时的人
 
 不太适合：
-- 只想做一个极简单体 Agent，且没有分工需要
-- 当前场景几乎没有复杂任务、风险任务或跨专项协作
-- 还没准备好维护一套角色边界与交接规范
+- 只需要一个极轻量单 agent
+- 完全不需要 specialist 分工
+- 不关心 handoff、review、release、risk 的使用场景
+
+---
+
+## 项目现状
+
+当前仓库已经完成：
+- 角色结构重构
+- 第二层纪律补硬
+- 第三层治理闭环
+- 正式总结
+- 对外升级公告
+- runtime 治理样例
+- governance playbooks
+
+也就是说，它现在已经从“角色说明仓”升级成：
+
+> **可以直接拿来搭建 OpenClaw 多 Agent 治理层的规范仓。**
 
 ---
 
 ## 仓库地址
 
-- https://github.com/MontellaGreat/openclaw-agent-team
+- GitHub: `https://github.com/MontellaGreat/openclaw-agent-team`
 
 ---
 
