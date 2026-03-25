@@ -24,11 +24,6 @@
 3. 按 control-center 自己的安装说明完成接线
 4. 在控制中心中把本项目当作“团队制度层”使用
 
-优点：
-- 风险低
-- 维护清晰
-- 便于独立升级
-
 ### 方式 B：Git Submodule 集成
 适合：
 - 希望一个总仓库管理多个配套仓库
@@ -39,21 +34,8 @@
 git submodule add https://github.com/TianyiDataScience/openclaw-control-center.git integrations/openclaw-control-center
 ```
 
-优点：
-- 可以固定版本
-- 保留上游独立更新能力
-
-注意：
-- submodule 对非技术用户不够友好
-- clone 时需要额外初始化
-
 ### 方式 C：代码拷贝 / vendor（不默认推荐）
 除非后续明确要做深度二次开发，否则不建议直接把对方仓库源码整体搬进本仓库。
-
-原因：
-- 仓库体积变大
-- 升级难
-- 容易和上游分叉失控
 
 ---
 
@@ -93,7 +75,7 @@ git submodule add https://github.com/TianyiDataScience/openclaw-control-center.g
 如果后续要做进一步集成，建议按下面顺序推进：
 
 1. **Roster 映射**
-   - 把 `墨影 / 探针 / 铁手 / 笔官 / 问隙 / 观象 / 片场` 映射成控制中心里的标准角色显示
+   - 把 `墨影 / 承枢 / 探针 / 铁手 / 笔官 / 问隙 / 观象 / 片场` 映射成控制中心里的标准角色显示
 
 2. **风险标签联动**
    - 把“高风险任务必须复核”的规则映射成 UI 标识
@@ -102,7 +84,7 @@ git submodule add https://github.com/TianyiDataScience/openclaw-control-center.g
    - 在控制中心里展示：待审议 / 已复核 / 可放行 / 不建议放行
 
 4. **调度规则观测**
-   - 标记当前任务是否单线、是否并行、是否超出边界
+   - 标记当前任务是否单线、是否并行、是否超出边界、是否由承枢协调中
 
 5. **团队制度可视化**
    - 在控制中心展示本仓库中的团队规则与角色定义

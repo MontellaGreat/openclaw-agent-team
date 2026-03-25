@@ -120,10 +120,13 @@ The operating model also includes:
 3. Read `docs/agent-routing-matrix.md`
 4. Read `docs/task-lifecycle.md`
 5. Continue with `docs/handoff-protocol.md` and `docs/review-quality-gates.md`
-6. Then read `docs/runtime-state-model.md`
-7. Then read `docs/agent-io-contracts.md`
-8. Then read `docs/failure-recovery.md`
-9. Finish with `docs/openclaw-runtime-mapping.md`
+6. Then read `docs/negative-boundaries.md`
+7. Then read `docs/a2a-delegation-protocol.md`
+8. Then read `docs/session-hygiene.md`
+9. Then read `docs/runtime-state-model.md`
+10. Then read `docs/agent-io-contracts.md`
+11. Then read `docs/failure-recovery.md`
+12. Finish with `docs/openclaw-runtime-mapping.md`
 
 ### If you want to wire real sub-agents
 1. Read `QUICKSTART.md`
@@ -144,6 +147,9 @@ The operating model also includes:
 - `docs/agent-routing-matrix.md`
 - `docs/task-lifecycle.md`
 - `docs/handoff-protocol.md`
+- `docs/negative-boundaries.md`
+- `docs/a2a-delegation-protocol.md`
+- `docs/session-hygiene.md`
 - `docs/review-quality-gates.md`
 - `docs/task-complexity-levels.md`
 - `docs/runtime-state-model.md`

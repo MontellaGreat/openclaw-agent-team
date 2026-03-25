@@ -102,6 +102,9 @@
 - `docs/main-agent-decision-flow.md`
 - `docs/task-lifecycle.md`
 - `docs/handoff-protocol.md`
+- `docs/negative-boundaries.md`
+- `docs/a2a-delegation-protocol.md`
+- `docs/session-hygiene.md`
 - `docs/review-quality-gates.md`
 - `docs/task-complexity-levels.md`
 - `docs/runtime-state-model.md`
@@ -180,10 +183,13 @@
 3. 再读 `docs/agent-routing-matrix.md`
 4. 再读 `docs/task-lifecycle.md`
 5. 再补 `docs/handoff-protocol.md` 与 `docs/review-quality-gates.md`
-6. 再补 `docs/runtime-state-model.md`
-7. 再补 `docs/agent-io-contracts.md`
-8. 再补 `docs/failure-recovery.md`
-9. 最后看 `docs/openclaw-runtime-mapping.md`
+6. 再补 `docs/negative-boundaries.md`
+7. 再补 `docs/a2a-delegation-protocol.md`
+8. 再补 `docs/session-hygiene.md`
+9. 再补 `docs/runtime-state-model.md`
+10. 再补 `docs/agent-io-contracts.md`
+11. 再补 `docs/failure-recovery.md`
+12. 最后看 `docs/openclaw-runtime-mapping.md`
 
 ### 如果你准备做真实多 Agent 接入
 1. 先读 `QUICKSTART.md`
@@ -211,6 +217,9 @@
 ### 3. 生命周期、交接与复核
 - `docs/task-lifecycle.md`
 - `docs/handoff-protocol.md`
+- `docs/negative-boundaries.md`
+- `docs/a2a-delegation-protocol.md`
+- `docs/session-hygiene.md`
 - `docs/review-quality-gates.md`
 - `docs/risk-and-review.md`
 - `docs/doctor.md`

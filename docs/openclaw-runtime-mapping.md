@@ -64,11 +64,12 @@
 - 需要并行时
 
 建议映射：
+- 承枢 -> coordination / orchestration 子任务
 - 探针 -> research / retrieval 子任务
 - 铁手 -> coding / automation 子任务
 - 笔官 -> writing / drafting 子任务
-- 问隙 -> testing / validation 子任务
-- 观象 -> image / screenshot / OCR 分析子任务
+- 问隙 -> testing / validation / QA 子任务
+- 观象 -> structured ops / cron / recurring execution 子任务
 - 片场 -> 媒体调度或生成子任务
 
 建议规则：
@@ -104,6 +105,7 @@
 规则：
 - handoff 不完整时，不进入 Released
 - 若结果冲突，进入 Review，由墨影裁决
+- 多步骤任务可先由承枢回收阶段 handoff，再交墨影终审
 
 ---
 
@@ -158,6 +160,7 @@
 - 用 `sessions_spawn` 派发
 - 用 `sessions_history` 回收
 - 用 `subagents` 做干预
+- 必要时由承枢做编排协调
 - 墨影统一 review 与 release
 
 ### 路径 D：高风险复杂任务
@@ -179,7 +182,7 @@
 4. 不会扩大风险
 
 ### 典型并行
-- 探针查资料 + 观象看截图
+- 探针查资料 + 观象执行例行任务
 - 笔官起结构 + 片场做风格方向草案
 - 铁手实现 + 问隙先设计验证点
 
@@ -203,6 +206,7 @@
 - 控制台状态板
 - 手动 release 清单
 - 高风险动作确认清单
+- 承枢视角的阶段状态板
 
 ---
 
