@@ -56,6 +56,7 @@ This repo provides:
 - OpenClaw runtime mapping
 - evaluation metrics
 - runtime examples
+- final audit and upgrade summary
 
 ---
 
@@ -163,6 +164,7 @@ The operating model also includes:
 - `docs/staged-rollout.md`
 - `docs/openclaw-runtime-mapping.md`
 - `docs/metrics-and-evaluation.md`
+- `docs/final-audit-and-upgrade-summary.md`
 - `docs/pianchang-orchestration.md`
 - `docs/doctor.md`
 - `docs/recipes.md`

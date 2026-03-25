@@ -131,6 +131,9 @@
 - `ROADMAP.md`
 - `CHANGELOG.md`
 
+正式总结见：
+- `docs/final-audit-and-upgrade-summary.md`
+
 英文说明见：
 - `README.en.md`
 
@@ -233,6 +236,7 @@
 - `docs/roster-discipline.md`
 - `docs/staged-rollout.md`
 - `docs/metrics-and-evaluation.md`
+- `docs/final-audit-and-upgrade-summary.md`
 
 ### 4. 各角色职责说明
 - `docs/agent-specifications.md`
