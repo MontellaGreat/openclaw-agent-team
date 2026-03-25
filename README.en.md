@@ -48,6 +48,8 @@ This repo provides:
 - task playbooks
 - multimedia orchestration rules
 - lifecycle / handoff / review gate / complexity docs
+- negative-boundary / delegation / session-hygiene docs
+- a full third-layer governance set for release, observability, roster, rollout, and control center integration
 - runtime state model
 - agent I/O contracts
 - failure recovery guidance
@@ -155,6 +157,10 @@ The operating model also includes:
 - `docs/runtime-state-model.md`
 - `docs/agent-io-contracts.md`
 - `docs/failure-recovery.md`
+- `docs/release-discipline.md`
+- `docs/observability-schema.md`
+- `docs/roster-discipline.md`
+- `docs/staged-rollout.md`
 - `docs/openclaw-runtime-mapping.md`
 - `docs/metrics-and-evaluation.md`
 - `docs/pianchang-orchestration.md`

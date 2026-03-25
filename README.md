@@ -50,6 +50,8 @@
 - 一份安装文档
 - 一份路线图与更新日志
 - 一套任务生命周期、交接协议、质量门禁与复杂度分级说明
+- 一套负边界、委派协议与 session hygiene 规则
+- 一套第三层治理文档（release / observability / roster / rollout / control center）
 - 一套可直接落地的 workspace 模板
 - 一份 OpenClaw 配置示例
 - 一组高频任务 recipes
@@ -226,6 +228,10 @@
 - `docs/runtime-state-model.md`
 - `docs/agent-io-contracts.md`
 - `docs/failure-recovery.md`
+- `docs/release-discipline.md`
+- `docs/observability-schema.md`
+- `docs/roster-discipline.md`
+- `docs/staged-rollout.md`
 - `docs/metrics-and-evaluation.md`
 
 ### 4. 各角色职责说明
