@@ -31,6 +31,7 @@ It solves problems like:
 - the main agent acting as both controller and random executor
 - sub-agents having vague boundaries
 - no shared routing, review, release, or recovery rules
+- no clear coordination layer for multi-step task execution
 
 This repo provides:
 - role definitions
@@ -62,16 +63,22 @@ Responsibilities:
 - receive user goals
 - judge task type, complexity, and priority
 - decide whether to execute directly or decompose
-- delegate specialist subtasks when needed
-- review and merge results
+- decide who should take primary responsibility
 - make final risk/release decisions
 
+### Coordination Layer: Chengshu
+Responsibilities:
+- coordinate multi-step execution chains
+- track task state and handoffs
+- surface blockers, dependencies, and gaps
+- submit staged summaries back to Moying
+
 ### Specialist Agents
-- Biguan — writing and content planning
+- Biguan — content drafting and structured writing
 - Tanzhen — research and intelligence
-- Guanxiang — visual understanding
 - Tieshou — engineering execution
-- Wenxi — testing and troubleshooting
+- Wenxi — testing, QA, and review
+- Guanxiang — daily ops / recurring structured execution
 - Pianchang — multimedia orchestration hub
   - image generation
   - video generation
@@ -84,6 +91,7 @@ Responsibilities:
 
 If the task is simple and can be handled reliably, do it directly.
 Only split the task when it is truly complex, risky, or requires specialist capability.
+For multi-step work, Chengshu may handle coordination, but final judgment stays with Moying.
 
 The operating model also includes:
 - lifecycle tracking
@@ -160,7 +168,8 @@ The operating model also includes:
 ## Best Fit
 Good fit when you want to:
 - keep a main agent in charge instead of turning it into a message relay
-- define clean role boundaries for writing, research, engineering, testing, and multimedia work
+- define clean role boundaries for research, writing, engineering, QA, structured ops, and multimedia work
+- add a coordination layer for multi-step collaboration without removing final control from the main agent
 - start with prompts first, then gradually connect real sub-agents
 - add review gates for risky actions like publishing, code merge, config changes, or permissions
 - add runtime state, recovery, and evaluation layers over time

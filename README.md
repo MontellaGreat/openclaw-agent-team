@@ -33,6 +33,7 @@
 - 主 Agent 容易既当总控又亲自下场，角色混乱
 - 附属 Agent 没边界，容易越权、跑偏、重复劳动
 - 缺少统一的任务分发、审议、放行和风险控制规则
+- 多步骤任务缺少明确的编排协调层
 
 这个项目给出：
 - 一套角色定义
@@ -52,7 +53,7 @@
 - 一套可直接落地的 workspace 模板
 - 一份 OpenClaw 配置示例
 - 一组高频任务 recipes
-- 一套 v1 发布准备文档
+- 一套 v1 / v2 演进可用的制度层文档
 
 ---
 
@@ -62,25 +63,33 @@
 职责：
 - 接收用户目标
 - 判断任务性质和优先级
-- **先判断任务是简单还是复杂，并做复杂度分级**
+- 先判断任务是简单还是复杂，并做复杂度分级
 - 简单任务直接执行
 - 复杂任务拆解后再下放
-- 选择合适的附属 Agent
-- 汇总附属 Agent 的结果
+- 决定由谁承担主责
 - 做最终审议
 - 做风险监察
-- 做代码审查
 - 做质量把控
 - 决定是否放行
 
 定位：**唯一总控，不下放最终审议权**。
 
+### 编排协调层：承枢
+职责：
+- 在多步骤任务中承担编排协调劳动
+- 跟踪状态推进
+- 回收 handoff
+- 暴露阻塞、依赖与缺口
+- 向墨影提交阶段汇总
+
+定位：**流程推进位，不替代墨影拍板**。
+
 ### 附属 Agent
-- 笔官：内容策划写作
+- 笔官：内容成稿
 - 探针：研究情报
-- 观象：视觉理解
 - 铁手：研发执行
-- 问隙：测试排障
+- 问隙：测试排障 / QA / 审查
+- 观象：日常运营 / 例行执行 / structured ops
 - 片场：多媒体调度中枢
   - 片场-生图
   - 片场-视频
@@ -107,6 +116,7 @@
 示例流程见：
 - `examples/simple-task-playbook.md`
 - `examples/complex-task-playbook.md`
+- `examples/example-delegation-patterns.md`
 
 安装说明见：
 - `INSTALL.md`
@@ -116,11 +126,6 @@
 - `ROADMAP.md`
 - `CHANGELOG.md`
 
-v1 发布准备见：
-- `docs/v1-positioning.md`
-- `RELEASE_NOTES_v1.md`
-- `PUBLISH_CHECKLIST.md`
-
 英文说明见：
 - `README.en.md`
 
@@ -128,15 +133,15 @@ v1 发布准备见：
 
 ## 核心原则
 
-1. 主 Agent 是唯一总控，附属 Agent 不能替代最终决策。
-2. 主 Agent 接到任务后先判断：简单任务直接做，复杂任务再拆。
-3. 主 Agent 必须具备调度意识：分发要有收益，不为热闹而拆。
-4. 复杂任务可先简要说明分工，再进入派遣。
+1. 墨影是唯一总控，附属 Agent 不能替代最终决策。
+2. 墨影接到任务后先判断：简单任务直接做，复杂任务再拆。
+3. 多步骤任务可由承枢承担编排协调劳动，但不替代墨影拍板。
+4. 分发必须带来收益，不为热闹而拆。
 5. 并行派遣只在任务独立、明显提效且不会放大风险时启用。
-6. 高风险任务必须经过主 Agent 复核。
-7. 对外发布、代码合并、配置变更、权限相关操作，必须经过主 Agent 审议。
+6. 高风险任务必须经过墨影复核。
+7. 对外发布、代码合并、配置变更、权限相关操作，必须经过墨影审议。
 8. 交接不等于完成，产出不等于放行。
-9. 结果冲突由主 Agent 裁决，不能把冲突原样抛给用户。
+9. 结果冲突由墨影裁决，不能把冲突原样抛给用户。
 10. 输出结论优先、简洁清晰、少废话。
 
 ---
@@ -250,7 +255,7 @@ v1 发布准备见：
 适合：
 - 想把 OpenClaw 从“单个万能 Agent”升级成“有边界的团队协作模式”
 - 想让主 Agent 保持总控权，而不是沦为消息中转站
-- 想给写作、研究、研发、测试、多媒体任务建立稳定分发规则
+- 想给研究、写作、研发、测试、structured ops、多媒体任务建立稳定分工
 - 想先用 Prompt 跑通，再逐步接入真实子 Agent
 - 想把这套规则长期沉淀为 workspace 模板
 
@@ -258,69 +263,6 @@ v1 发布准备见：
 - 只想做一个极简单体 Agent，且没有分工需要
 - 当前场景几乎没有复杂任务、风险任务或跨专项协作
 - 还没准备好维护一套角色边界与交接规范
-
----
-
-## 仓库结构
-
-```text
-openclaw-agent-team/
-├─ README.md
-├─ README.en.md
-├─ QUICKSTART.md
-├─ INSTALL.md
-├─ CHANGELOG.md
-├─ ROADMAP.md
-├─ RELEASE_NOTES_v1.md
-├─ PUBLISH_CHECKLIST.md
-├─ LICENSE
-├─ openclaw.example.json
-├─ prompt/
-│  ├─ one-shot-prompt.md
-│  ├─ PROMPT_SHORT.md
-│  ├─ PROMPT_FULL.md
-│  └─ modular-prompt.md
-├─ docs/
-│  ├─ architecture.md
-│  ├─ routing-rules.md
-│  ├─ risk-and-review.md
-│  ├─ openclaw-adaptation.md
-│  ├─ rollout-checklist.md
-│  ├─ control-center-integration.md
-│  ├─ agent-specifications.md
-│  ├─ agent-routing-matrix.md
-│  ├─ pianchang-orchestration.md
-│  ├─ main-agent-decision-flow.md
-│  ├─ task-lifecycle.md
-│  ├─ handoff-protocol.md
-│  ├─ review-quality-gates.md
-│  ├─ task-complexity-levels.md
-│  ├─ doctor.md
-│  ├─ recipes.md
-│  ├─ workspace-bootstrap.md
-│  ├─ faq.md
-│  ├─ troubleshooting.md
-│  ├─ diagrams.md
-│  └─ v1-positioning.md
-├─ rules/
-│  ├─ pianchang-image-input.md
-│  ├─ pianchang-video-input.md
-│  └─ pianchang-edit-input.md
-├─ examples/
-│  ├─ example-user-requests.md
-│  ├─ example-delegation-patterns.md
-│  ├─ example-control-center-pairing.md
-│  ├─ simple-task-playbook.md
-│  └─ complex-task-playbook.md
-├─ workspace-template/
-│  ├─ SOUL.md
-│  ├─ AGENTS.md
-│  ├─ IDENTITY.md
-│  ├─ USER.md
-│  ├─ TOOLS.md
-│  └─ HEARTBEAT.md
-└─ team-config.example.yaml
-```
 
 ---
 
