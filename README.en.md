@@ -156,36 +156,88 @@ Core docs:
 
 ## Team Structure
 
-### Main Agent: Moying
-Position: **the only final controller**
+This team is not a flat list of agents.
+It is a three-layer operating structure:
+
+```text
+User
+  ↓
+Moying (main agent / final controller)
+  ↓
+Chengshu (coordination layer)
+  ↓
+Specialist layer (Tanzhen / Biguan / Tieshou / Wenxi / Guanxiang / Pianchang)
+```
+
+### Layer 1: Moying
+Position: **the only final controller / final reviewer / final releaser**
 
 Responsibilities:
 - receive user goals
 - judge task type, complexity, and risk
 - decide direct execution / decomposition / review
-- make final decisions
-- own final review and release decisions
+- decide whether Chengshu is needed
+- make final decisions, final review, and final release calls
 
-### Coordination Layer: Chengshu
-Position: **process coordinator**
+In one line:
+- **Moying is not a relay. Moying is the control center.**
+
+### Layer 2: Chengshu
+Position: **coordination layer / process pusher**
 
 Responsibilities:
 - coordinate multi-step execution chains
 - track phase progress
 - collect handoffs
-- surface blockers and dependency gaps
+- surface blockers, dependency gaps, and missing inputs
 - send staged summaries back to Moying
 
-### Specialist Layer
-- `Tanzhen`: research and intelligence
-- `Biguan`: drafting and writing
-- `Tieshou`: engineering execution
-- `Wenxi`: testing / QA / review
-- `Guanxiang`: daily ops / recurring structured execution
-- `Pianchang`: multimedia orchestration hub
+Does not own:
+- final decisions
+- final release
+- specialist execution outcomes
+
+In one line:
+- **Chengshu carries process labor, not final authority.**
+
+### Layer 3: Specialist Layer
+The specialist layer is not always fully activated. Roles are pulled in by task type.
+
+#### Tanzhen
+- research and intelligence
+- handles research, comparison, and recommendation paths
+
+#### Biguan
+- drafting and writing
+- handles articles, outlines, reports, scripts, and structured text outputs
+
+#### Tieshou
+- engineering execution
+- handles code, scripts, automation, and implementation drafts
+
+#### Wenxi
+- QA / review
+- handles testing, troubleshooting, risk checks, and release suggestions
+
+#### Guanxiang
+- structured ops
+- handles recurring checks, cron-driven work, and stable structured execution
+
+#### Pianchang
+- multimedia orchestration
+- routes image / video / edit work to the right sub-capability and consolidates outputs
+
+### Key Structural Points
+- `Moying` keeps final control
+- `Chengshu` pushes complex chains forward
+- specialists only handle bounded sub-tasks
+- `Wenxi` and `Tieshou` form the default implementation / QA pairing
+- `Guanxiang` is no longer a visual-analysis role; it is the structured-ops role
+- `Pianchang` is an orchestration hub, not a universal multimedia executor
 
 Detailed specs:
 - `docs/agent-specifications.md`
+- `docs/agent-routing-matrix.md`
 - `docs/pianchang-orchestration.md`
 
 ---
