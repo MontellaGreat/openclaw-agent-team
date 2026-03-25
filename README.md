@@ -122,6 +122,8 @@
 - `examples/simple-task-playbook.md`
 - `examples/complex-task-playbook.md`
 - `examples/example-delegation-patterns.md`
+- `examples/governance-playbook-release-chain.md`
+- `examples/governance-playbook-ops-escalation.md`
 
 安装说明见：
 - `INSTALL.md`
@@ -133,6 +135,7 @@
 
 正式总结见：
 - `docs/final-audit-and-upgrade-summary.md`
+- `docs/upgrade-announcement.md`
 
 英文说明见：
 - `README.en.md`

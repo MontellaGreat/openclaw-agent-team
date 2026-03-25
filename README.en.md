@@ -46,6 +46,8 @@ This repo provides:
 - recipes for common workflows
 - decision flow for the main agent
 - task playbooks
+- governance playbooks
+- upgrade announcement
 - multimedia orchestration rules
 - lifecycle / handoff / review gate / complexity docs
 - negative-boundary / delegation / session-hygiene docs
