@@ -1,0 +1,18 @@
+{
+  "task_id": "task-YYYYMMDD-001",
+  "goal": "在此填写任务目标",
+  "scope": "在此填写任务边界",
+  "complexity": "L1|L2|L3|L4",
+  "risk_level": "low|medium|high",
+  "owner_agent": "main",
+  "support_agents": [],
+  "status": "judging",
+  "review_required": false,
+  "release_required": false,
+  "current_release_stage": "draft",
+  "artifacts": [],
+  "handoff_from": null,
+  "handoff_to": null,
+  "blocked_reason": null,
+  "last_updated_at": "2026-03-26T21:00:00+08:00"
+}

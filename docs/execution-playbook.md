@@ -1,0 +1,128 @@
+# Execution Playbook
+
+本文件回答一个核心问题：
+
+> 这套团队规则，怎么每天真实运行，而不是只停在 prompt 和文档里？
+
+---
+
+## 一、每日最小动作
+
+### 步骤 1：建任务
+收到复杂任务后，先记任务卡。
+
+最少字段：
+- `task_id`
+- `goal`
+- `scope`
+- `complexity`
+- `risk_level`
+- `owner_agent`
+- `support_agents`
+- `status`
+- `current_release_stage`
+
+### 步骤 2：定级
+- L1：墨影直接做
+- L2：墨影 + 一个 specialist
+- L3：墨影 + 承枢 + 必要 specialist
+- L4：墨影 + 执行位 + QA / review 位
+
+### 步骤 3：发任务
+发给子 Agent 时，必须带：
+- 任务边界
+- 目标
+- 交付格式
+- 完成标准
+- 风险提醒
+
+### 步骤 4：收交接
+子 Agent 不直接对用户结案。
+统一回 handoff。
+
+### 步骤 5：复核与放行
+- 非高风险：可简化 review
+- 高风险：必须 review + release decision
+
+---
+
+## 二、推荐文件动作
+
+### 任务开始时
+新增或追加：
+- `runtime/task-board.jsonl`
+
+### 子任务完成时
+新增：
+- `runtime/handoffs/<task_id>-<agent>.md`
+
+### 需要复核时
+新增：
+- `runtime/reviews/<task_id>-review.md`
+
+### 最终裁决时
+新增：
+- `runtime/release/<task_id>-decision.json`
+
+---
+
+## 三、承枢真正怎么用
+
+承枢不是“再多一个会聊天的 agent”。
+承枢要承担 4 个实动作：
+
+1. 维护阶段状态
+2. 回收 handoff
+3. 暴露阻塞与缺口
+4. 向墨影交阶段汇总
+
+如果没有这 4 个动作，说明承枢没有真正落地。
+
+---
+
+## 四、什么时候算团队失控
+
+出现以下任一情况，就说明制度没落地：
+- 墨影接到任务就无脑分发
+- specialist 直接替墨影拍板
+- 交接没有验证方式
+- review 缺失但任务被当成完成
+- runtime 里没有任务状态记录
+- 承枢只存在于说明里，不存在于运行链路里
+
+---
+
+## 五、最小验收标准
+
+### 验收 1：简单任务
+- 不过度拆解
+
+### 验收 2：复杂任务
+- 看得见 task card
+- 看得见 handoff
+- 看得见阶段状态
+
+### 验收 3：高风险任务
+- 看得见 review card
+- 看得见 release decision
+- specialist 不越权放行
+
+---
+
+## 六、任务规划系统接入规则
+
+外部规划系统只能增强以下部分：
+- 任务拆解
+- 依赖关系识别
+- 子任务排序
+- 可视化阶段板
+
+不能替代以下部分：
+- 墨影的最终定级
+- 承枢的链路协调
+- 问隙的 QA 判断
+- 墨影的最终 release decision
+
+最安全的接法是：
+
+> 让外部规划系统输出“候选任务树”，再映射进 `runtime/task-board.jsonl`，由墨影确认后生效。

@@ -42,6 +42,8 @@ OpenClaw Agent Team 不是一个“展示多 Agent 设定”的项目。
 - `docs/agent-io-contracts.md`
 - `docs/failure-recovery.md`
 - `docs/openclaw-runtime-mapping.md`
+- `docs/agent-workspace-kit.md`
+- `docs/execution-playbook.md`
 
 ---
 
@@ -90,6 +92,16 @@ OpenClaw Agent Team 不是一个“展示多 Agent 设定”的项目。
 ### 第三步：判断是否先够用
 如果上述 3 个测试都符合预期，说明最小接入已成立。
 这时再决定要不要补真实子 Agent、规则文件和控制台接入。
+
+### 第四步：把规则落成运行对象
+如果你准备长期使用，不要停在 prompt。
+至少再补：
+- `workspace-template/team/`
+- `runtime/task-card.template.json`
+- `docs/agent-workspace-kit.md`
+- `docs/execution-playbook.md`
+
+目标不是“文档更多”，而是让每个复杂任务都能留下 task / handoff / review / release 痕迹。
 
 ---
 

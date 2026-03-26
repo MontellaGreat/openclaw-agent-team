@@ -165,8 +165,20 @@
 - `USER.md`：用户背景、偏好、协作方式
 - `TOOLS.md`：环境、工具、接口、约束
 - `HEARTBEAT.md`：周期性检查与提醒
+- `team/<agent>/IDENTITY.md`：各子 Agent 的职责边界
+- `team/<agent>/SOUL.md`：各子 Agent 的表达与判断偏好
+- `team/<agent>/AGENTS.md`：各子 Agent 的接单与交接规则
+- `runtime/task-board.jsonl`：真实任务状态板
+- `runtime/handoffs/`：真实交接记录
+- `runtime/reviews/`：真实审查记录
+- `runtime/release/`：最终放行记录
 
 这样比把所有规则都堆在一段 prompt 里更稳，也更方便持续维护。
+
+推荐补看：
+- `docs/agent-workspace-kit.md`
+- `docs/execution-playbook.md`
+- `runtime/task-card.template.json`
 
 ---
 
