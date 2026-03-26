@@ -99,10 +99,16 @@ OpenClaw Agent Team 不是一个“展示多 Agent 设定”的项目。
 - `workspace-template/team/`
 - `runtime/task-card.template.json`
 - `runtime/task-tree.example.json`
+- `runtime/delegation-request.template.md`
+- `runtime/chengshu-phase-summary.template.md`
+- `runtime/specialist-handoff.template.md`
 - `docs/agent-workspace-kit.md`
 - `docs/execution-playbook.md`
 - `docs/planning-contract.md`
+- `docs/runtime-sop.md`
+- `docs/spawn-decision-guide.md`
 - `examples/runtime-chain/`
+- `examples/sop/`
 
 目标不是“文档更多”，而是让每个复杂任务都能留下 task / handoff / review / release 痕迹。
 

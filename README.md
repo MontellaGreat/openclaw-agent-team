@@ -332,6 +332,8 @@
 - `docs/risk-and-review.md`
 - `docs/failure-recovery.md`
 - `docs/doctor.md`
+- `docs/runtime-sop.md`
+- `docs/spawn-decision-guide.md`
 
 ### 4. 第二层纪律
 - `docs/negative-boundaries.md`
@@ -379,6 +381,8 @@
 - `examples/real-openclaw-multi-agent-playbook.md`
 - `examples/governance-playbook-release-chain.md`
 - `examples/governance-playbook-ops-escalation.md`
+- `examples/runtime-chain/`
+- `examples/sop/`
 
 ### runtime 示例
 - `runtime/task-board.example.jsonl`

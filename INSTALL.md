@@ -180,9 +180,15 @@
 - `docs/execution-playbook.md`
 - `docs/planning-contract.md`
 - `docs/smart-task-planner-assessment.md`
+- `docs/runtime-sop.md`
+- `docs/spawn-decision-guide.md`
 - `runtime/task-card.template.json`
 - `runtime/task-tree.example.json`
+- `runtime/delegation-request.template.md`
+- `runtime/chengshu-phase-summary.template.md`
+- `runtime/specialist-handoff.template.md`
 - `examples/runtime-chain/`
+- `examples/sop/`
 
 ---
 
