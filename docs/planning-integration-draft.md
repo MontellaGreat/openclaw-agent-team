@@ -82,19 +82,29 @@
 
 ---
 
-## 五、对“智能任务规划系统”的暂定判断
+## 五、对“智能任务规划系统”的当前判断
 
-在当前无法稳定抓取资产详情页的情况下，先做保守判断：
+已安装包体并完成基础审查，当前判断如下：
 
 - **适合作为 planning enhancement 候选**
 - **不应直接替代本仓库的总控与治理层**
-- **更适合先按 planning skill / experience integration 的方式纳入**
+- **更适合先按参考型 planning skill / integration reference 的方式纳入**
 
-待补充确认项：
-- 它是否输出任务树或阶段计划
-- 它是否有固定输入输出格式
-- 它是否能映射到 task-board 字段
-- 它是否支持依赖关系与执行顺序表达
+当前已确认：
+- 安装包只有 `SKILL.md` 与 `manifest.json`
+- 文案强调 DAG、依赖、监控、重试、可视化
+- 但包内没有可验证脚本、schema、runtime 对接文件或输出 contract
+
+因此当前更像：
+- 规划方法说明
+- 设计灵感来源
+- planning layer 候选方向
+
+而不是：
+- 已可直接接入主链的任务规划引擎
+
+更完整评估见：
+- `docs/smart-task-planner-assessment.md`
 
 ---
 
