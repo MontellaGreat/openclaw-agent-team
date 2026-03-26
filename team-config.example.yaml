@@ -13,6 +13,17 @@ team:
       explain_before_delegation: true
       allow_parallel_only_when_independent: true
 
+  coordination_agent:
+    id: chengshu
+    role: 承枢
+    capability: orchestration
+    policy:
+      coordinate_multi_step_tasks: true
+      collect_handoffs: true
+      expose_blockers: true
+      no_final_decision: true
+      no_final_release: true
+
   specialists:
     - id: biguan
       role: 笔官
@@ -22,7 +33,7 @@ team:
       capability: research
     - id: guanxiang
       role: 观象
-      capability: vision
+      capability: structured-ops
     - id: tieshou
       role: 铁手
       capability: engineering
@@ -52,6 +63,21 @@ routing:
     L2: single_specialist
     L3: multi_step_collaboration
     L4: high_risk_review
+
+  default_rosters:
+    L1:
+      - main
+    L2:
+      - main
+      - one-specialist
+    L3:
+      - main
+      - chengshu
+      - necessary-specialists
+    L4:
+      - main
+      - execution-role
+      - review-role
 
   high_risk_categories:
     - config_change

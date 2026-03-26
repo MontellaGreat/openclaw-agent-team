@@ -22,7 +22,17 @@
         },
         "identity": {
           "name": "墨影",
-          "theme": "主 Agent / 总控。先判断任务复杂度与风险，简单任务直接执行，复杂任务再拆解并汇总审议。"
+          "theme": "主 Agent / 总控。先判断任务复杂度与风险，简单任务直接执行，复杂任务再拆解、审议与放行。"
+        },
+        "subagents": {
+          "allowAgents": ["chengshu", "tanzhen", "biguan", "guanxiang", "tieshou", "wenxi", "pianchang"]
+        }
+      },
+      {
+        "id": "chengshu",
+        "identity": {
+          "name": "承枢",
+          "theme": "编排协调 Agent。负责多步骤任务的状态推进、handoff 回收、阻塞暴露与阶段汇总，不做最终裁决与放行。"
         },
         "subagents": {
           "allowAgents": ["tanzhen", "biguan", "guanxiang", "tieshou", "wenxi", "pianchang"]
@@ -46,7 +56,7 @@
         "id": "guanxiang",
         "identity": {
           "name": "观象",
-          "theme": "视觉理解 Agent。负责截图、图片、页面、界面分析与 OCR。"
+          "theme": "日常运营 / 例行执行 / structured ops Agent。负责巡检、cron、定时汇总和稳定结构化任务执行。"
         }
       },
       {
@@ -74,6 +84,7 @@
   },
   "bindings": [
     { "agentId": "main", "channel": "discord", "accountId": "main-bot" },
+    { "agentId": "chengshu", "channel": "discord", "accountId": "chengshu-bot" },
     { "agentId": "tanzhen", "channel": "discord", "accountId": "tanzhen-bot" },
     { "agentId": "biguan", "channel": "discord", "accountId": "biguan-bot" },
     { "agentId": "guanxiang", "channel": "discord", "accountId": "guanxiang-bot" },
@@ -86,6 +97,10 @@
       "accounts": {
         "main-bot": {
           "token": "$DISCORD_BOT_TOKEN_MAIN",
+          "groupPolicy": "open"
+        },
+        "chengshu-bot": {
+          "token": "$DISCORD_BOT_TOKEN_CHENGSHU",
           "groupPolicy": "open"
         },
         "tanzhen-bot": {

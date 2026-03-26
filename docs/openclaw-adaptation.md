@@ -10,6 +10,7 @@
 
 ## 推荐映射
 - 墨影=main
+- 承枢=chengshu
 - 探针=tanzhen
 - 铁手=tieshou
 - 笔官=biguan
@@ -20,9 +21,11 @@
 ## 使用方式
 - 直接复制 `prompt/one-shot-prompt.md`
 - 放入目标 OpenClaw 的主 Agent 提示区
+- 如目标环境支持真实多 agent，可同时补齐 `chengshu` 与各 specialist 的真实映射
 - 如本地 agent 名称不同，只替换映射段即可
 
 ## 注意事项
 - 提示词解决的是“分工规则”，不是“自动创建子 agent”
 - 若目标实例尚无对应子 agent，需要先完成 agent 注册或建立等价映射
+- 若暂时没有 `chengshu`，可以先由主 Agent 在主会话内模拟编排协调，但不要把该缺口写成“已经有协调层”
 - 高风险规则建议保留，不要删
