@@ -1,0 +1,70 @@
+{
+  "plan_id": "plan-20260326-001",
+  "task_id": "task-20260326-001",
+  "goal": "调研方案、起草汇报，并准备配图方向稿",
+  "complexity_suggestion": "L3",
+  "risk_suggestion": "medium",
+  "stages": [
+    "research",
+    "drafting",
+    "media-direction",
+    "review"
+  ],
+  "nodes": [
+    {
+      "node_id": "n1",
+      "title": "方案调研",
+      "owner_agent": "tanzhen",
+      "objective": "比较 2-3 条方案并给推荐路径",
+      "depends_on": [],
+      "deliverable": "research-summary.md",
+      "verification": "来源核对 + 证据强弱标注",
+      "risk_level": "low",
+      "status": "pending"
+    },
+    {
+      "node_id": "n2",
+      "title": "汇报成稿",
+      "owner_agent": "biguan",
+      "objective": "基于调研结果输出可直接汇报的文本草稿",
+      "depends_on": ["n1"],
+      "deliverable": "briefing-draft.md",
+      "verification": "结构完整 + 不确定点标注",
+      "risk_level": "medium",
+      "status": "pending"
+    },
+    {
+      "node_id": "n3",
+      "title": "配图方向稿",
+      "owner_agent": "pianchang",
+      "objective": "根据汇报内容给出素材方向与生成建议",
+      "depends_on": ["n2"],
+      "deliverable": "media-direction.md",
+      "verification": "输入完整度检查 + 规则文件匹配",
+      "risk_level": "low",
+      "status": "pending"
+    },
+    {
+      "node_id": "n4",
+      "title": "主控复核",
+      "owner_agent": "main",
+      "objective": "汇总并决定是否进入正式对外版本",
+      "depends_on": ["n1", "n2", "n3"],
+      "deliverable": "release-decision.json",
+      "verification": "review gate",
+      "risk_level": "medium",
+      "status": "pending"
+    }
+  ],
+  "dependencies": [
+    ["n1", "n2"],
+    ["n2", "n3"],
+    ["n1", "n4"],
+    ["n2", "n4"],
+    ["n3", "n4"]
+  ],
+  "parallel_candidates": [],
+  "review_points": [
+    "n4"
+  ]
+}

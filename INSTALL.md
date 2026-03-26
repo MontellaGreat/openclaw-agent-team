@@ -178,7 +178,11 @@
 推荐补看：
 - `docs/agent-workspace-kit.md`
 - `docs/execution-playbook.md`
+- `docs/planning-contract.md`
+- `docs/smart-task-planner-assessment.md`
 - `runtime/task-card.template.json`
+- `runtime/task-tree.example.json`
+- `examples/runtime-chain/`
 
 ---
 

@@ -345,6 +345,9 @@
 - `docs/staged-rollout.md`
 - `docs/control-center-contract.md`
 - `docs/metrics-and-evaluation.md`
+- `docs/planning-contract.md`
+- `docs/planning-integration-draft.md`
+- `docs/smart-task-planner-assessment.md`
 
 ### 6. OpenClaw 接入
 - `docs/openclaw-runtime-mapping.md`
@@ -379,10 +382,13 @@
 
 ### runtime 示例
 - `runtime/task-board.example.jsonl`
+- `runtime/task-card.template.json`
+- `runtime/task-tree.example.json`
 - `runtime/handoff.example.md`
 - `runtime/handoff-event.example.json`
 - `runtime/review-card.example.md`
 - `runtime/release-decision.example.json`
+- `examples/runtime-chain/`
 
 ---
 
