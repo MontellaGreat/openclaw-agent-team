@@ -872,6 +872,7 @@ shell 最小命令集正式收敛为：
 - supervisor 最小轮询入口已落地：可扫描指定 ledger 目录下的 `task_state.json`，批量执行 `supervisorTick()`，并输出 `upgraded / skipped / failed` 摘要
 - supervisor 轮询真实升级样例已验证通过：在同一批量扫描中，`blocked -> review_required` 与 `running -> review_required` 两类超时任务都可被正确升级，且 done_check 汇总都会进入 `unresolved = 1`；当前不只可跳过已处理任务，也可对待处理任务执行真实批量升级
 - 仓库纳管关系已核对清楚：`multi agent test/openclaw-agent-team/` 不是根仓库纳管目录，也不是 submodule / gitlink，而是带独立 `.git/` 的内层独立仓库；根仓库当前仅把它视为未跟踪目录，最近代码未进入根仓历史并非提交失败，而是提交目标仓一直应为该 inner repo。后续本项目代码、文档、runtime 产物与项目内提交，应统一在该 inner repo 内完成；如需让根仓感知，只能显式决定改为 submodule 或移除 inner `.git` 后再纳入根仓。
+- 方案 A 已开始落地：项目继续保持独立 inner repo，不调整为 submodule，也不并入根仓；已补 `.gitignore` 忽略 `*.bak-*`，并新增一轮清理提交以收口工作区。当前 push 到 GitHub 时被远端新提交阻塞，原因不是本地仓结构错误，而是 `origin/main` 在此期间新增了 README 相关提交；下一步应先基于远端做安全 rebase / 合并，再完成 push。
 
 以下内容当前仍处于“部分实现 / 待继续补齐”阶段：
 - handoff / archive / recap / output_refs 与 done_check 的自动映射仍是第一版，尚未完全接入正式归档与结果摘要体系
