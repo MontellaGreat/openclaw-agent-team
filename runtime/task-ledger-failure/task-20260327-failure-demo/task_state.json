@@ -1,0 +1,203 @@
+{
+  "task_id": "task-20260327-failure-demo",
+  "source": "main-agent",
+  "creator": "main",
+  "contract_version": "v1",
+  "goal": "验证 blocked / failed / retrying 分支的 done_check 反向更新",
+  "context": "由 openclaw-agent-team runtime-core failure demo 自动生成",
+  "context_refs": [],
+  "constraints": [],
+  "done_definition": [
+    "task_state.json 成功落盘",
+    "task_events.jsonl 成功落盘",
+    "主链状态迁移成立"
+  ],
+  "done_checks": [
+    {
+      "id": "check-1-task-state-json-成功落盘",
+      "description": "task_state.json 成功落盘",
+      "type": "file_exists",
+      "evidence_required": true,
+      "status": "passed",
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "/root/.openclaw/workspace/multi agent test/openclaw-agent-team/runtime/task-ledger-failure/task-20260327-failure-demo/task_state.json",
+          "output_refs": [],
+          "note": "bootstrap state file created"
+        },
+        {
+          "kind": "event",
+          "ref": "BlockedDetected",
+          "event_seq": 5,
+          "output_refs": [],
+          "note": "blocked state observed"
+        },
+        {
+          "kind": "event",
+          "ref": "RetryApproved",
+          "event_seq": 6,
+          "output_refs": [],
+          "note": "retry state observed"
+        },
+        {
+          "kind": "event",
+          "ref": "TaskFailed",
+          "event_seq": 7,
+          "output_refs": [],
+          "note": "failure state observed"
+        }
+      ],
+      "verified_by": "supervisor",
+      "verified_at": "2026-03-27T16:49:19.271Z"
+    },
+    {
+      "id": "check-2-task-events-jsonl-成功落盘",
+      "description": "task_events.jsonl 成功落盘",
+      "type": "file_exists",
+      "evidence_required": true,
+      "status": "passed",
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "/root/.openclaw/workspace/multi agent test/openclaw-agent-team/runtime/task-ledger-failure/task-20260327-failure-demo/task_events.jsonl",
+          "output_refs": [],
+          "note": "bootstrap events file created"
+        },
+        {
+          "kind": "event",
+          "ref": "BlockedDetected",
+          "event_seq": 5,
+          "output_refs": [],
+          "note": "blocked state observed"
+        },
+        {
+          "kind": "event",
+          "ref": "RetryApproved",
+          "event_seq": 6,
+          "output_refs": [],
+          "note": "retry state observed"
+        },
+        {
+          "kind": "event",
+          "ref": "TaskFailed",
+          "event_seq": 7,
+          "output_refs": [],
+          "note": "failure state observed"
+        }
+      ],
+      "verified_by": "supervisor",
+      "verified_at": "2026-03-27T16:49:19.271Z"
+    },
+    {
+      "id": "check-3-主链状态迁移成立",
+      "description": "主链状态迁移成立",
+      "type": "status_match",
+      "evidence_required": true,
+      "status": "failed",
+      "evidence": [
+        {
+          "kind": "event",
+          "ref": "ExecutionAttemptStarted",
+          "event_seq": 4,
+          "output_refs": [],
+          "note": "pre-done chain satisfied by ExecutionAttemptStarted"
+        },
+        {
+          "kind": "event",
+          "ref": "BlockedDetected",
+          "event_seq": 5,
+          "output_refs": [],
+          "note": "blocked state observed"
+        },
+        {
+          "kind": "event",
+          "ref": "RetryApproved",
+          "event_seq": 6,
+          "output_refs": [],
+          "note": "retry state observed"
+        },
+        {
+          "kind": "event",
+          "ref": "TaskFailed",
+          "event_seq": 7,
+          "output_refs": [],
+          "note": "failure state observed"
+        }
+      ],
+      "verified_by": "supervisor",
+      "verified_at": "2026-03-27T16:49:19.271Z"
+    }
+  ],
+  "priority": "normal",
+  "risk_level": "medium",
+  "approval_required": false,
+  "approval_points": [],
+  "status": "failed",
+  "current_round": 0,
+  "created_at": "2026-03-27T16:49:19.259Z",
+  "updated_at": "2026-03-27T16:49:19.271Z",
+  "updated_by": "supervisor",
+  "last_progress_at": "2026-03-27T16:49:19.271Z",
+  "heartbeat_timeout": "30m",
+  "max_rounds": 8,
+  "max_retries": 2,
+  "max_wait_duration": "24h",
+  "retry_backoff": "exponential(base=5m, cap=2h)",
+  "nudge_limit": 2,
+  "task_ttl": "7d",
+  "fanout_limit": 3,
+  "retry_budget_remaining": 2,
+  "round_budget_remaining": 8,
+  "pending_review_count": 0,
+  "active_step_count": 1,
+  "history_log": [
+    "TaskCreated#1",
+    "DoneCheckUpdated#manual",
+    "DoneCheckUpdated#manual",
+    "TaskAccepted#2",
+    "PlanReady#3",
+    "ExecutionAttemptStarted#4",
+    "BlockedDetected#5",
+    "RetryApproved#6",
+    "TaskFailed#7"
+  ],
+  "escalation_count": 0,
+  "state_file_path": "/root/.openclaw/workspace/multi agent test/openclaw-agent-team/runtime/task-ledger-failure/task-20260327-failure-demo/task_state.json",
+  "events_file_path": "/root/.openclaw/workspace/multi agent test/openclaw-agent-team/runtime/task-ledger-failure/task-20260327-failure-demo/task_events.jsonl",
+  "version": 9,
+  "steps": [
+    {
+      "step_id": "task-20260327-failure-demo-s1",
+      "task_id": "task-20260327-failure-demo",
+      "title": "失败链验证",
+      "kind": "agent",
+      "status": "ready",
+      "depends_on": [],
+      "assignee_type": "main-agent",
+      "assignee_id": "main",
+      "input_refs": [],
+      "output_refs": [],
+      "retry_count": 0,
+      "idempotent": false,
+      "risk_level": "medium",
+      "approval_required": false
+    }
+  ],
+  "reviews": [],
+  "attempts": [
+    {
+      "attempt_id": "08038e44-0312-483c-b575-1a7ff6ddc326",
+      "task_id": "task-20260327-failure-demo",
+      "step_id": "task-20260327-failure-demo-s1",
+      "attempt_no": 1,
+      "trigger": "initial_dispatch",
+      "status": "running",
+      "actor_type": "executor",
+      "actor_id": "executor-demo",
+      "started_at": "2026-03-27T16:49:19.267Z",
+      "output_refs": []
+    }
+  ],
+  "terminal_reason": "retry_exhausted"
+}

@@ -1,0 +1,158 @@
+{
+  "task_id": "task-20260327-blocked-escalation-demo",
+  "source": "main-agent",
+  "creator": "main",
+  "contract_version": "v1",
+  "goal": "验证 blocked 超时升级后 unresolved 语义",
+  "context": "由 openclaw-agent-team runtime-core blocked escalation demo 自动生成",
+  "context_refs": [],
+  "constraints": [],
+  "done_definition": [
+    "task_state.json 成功落盘",
+    "task_events.jsonl 成功落盘",
+    "主链状态迁移成立"
+  ],
+  "done_checks": [
+    {
+      "id": "check-1-task-state-json-成功落盘",
+      "description": "task_state.json 成功落盘",
+      "type": "file_exists",
+      "evidence_required": true,
+      "status": "passed",
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "/root/.openclaw/workspace/multi agent test/openclaw-agent-team/runtime/task-ledger-blocked/task-20260327-blocked-escalation-demo/task_state.json",
+          "output_refs": [],
+          "note": "bootstrap state file created"
+        },
+        {
+          "kind": "event",
+          "ref": "BlockedDetected",
+          "event_seq": 5,
+          "output_refs": [],
+          "note": "blocked state observed"
+        },
+        {
+          "kind": "event",
+          "ref": "BlockedEscalatedToReview",
+          "event_seq": 6,
+          "output_refs": [],
+          "note": "blocked escalation observed"
+        }
+      ],
+      "verified_by": "system",
+      "verified_at": "2026-03-27T17:06:35.235Z"
+    },
+    {
+      "id": "check-2-task-events-jsonl-成功落盘",
+      "description": "task_events.jsonl 成功落盘",
+      "type": "file_exists",
+      "evidence_required": true,
+      "status": "passed",
+      "evidence": [
+        {
+          "kind": "file",
+          "ref": "/root/.openclaw/workspace/multi agent test/openclaw-agent-team/runtime/task-ledger-blocked/task-20260327-blocked-escalation-demo/task_events.jsonl",
+          "output_refs": [],
+          "note": "bootstrap events file created"
+        },
+        {
+          "kind": "event",
+          "ref": "BlockedDetected",
+          "event_seq": 5,
+          "output_refs": [],
+          "note": "blocked state observed"
+        },
+        {
+          "kind": "event",
+          "ref": "BlockedEscalatedToReview",
+          "event_seq": 6,
+          "output_refs": [],
+          "note": "blocked escalation observed"
+        }
+      ],
+      "verified_by": "system",
+      "verified_at": "2026-03-27T17:06:35.236Z"
+    },
+    {
+      "id": "check-3-主链状态迁移成立",
+      "description": "主链状态迁移成立",
+      "type": "status_match",
+      "evidence_required": true,
+      "status": "unresolved",
+      "evidence": [
+        {
+          "kind": "event",
+          "ref": "BlockedDetected",
+          "event_seq": 5,
+          "output_refs": [],
+          "note": "blocked state observed"
+        },
+        {
+          "kind": "event",
+          "ref": "BlockedEscalatedToReview",
+          "event_seq": 6,
+          "output_refs": [],
+          "note": "blocked escalation observed"
+        }
+      ]
+    }
+  ],
+  "priority": "normal",
+  "risk_level": "medium",
+  "approval_required": false,
+  "approval_points": [],
+  "status": "review_required",
+  "current_round": 0,
+  "created_at": "2026-03-27T17:06:35.228Z",
+  "updated_at": "2026-03-27T17:06:35.246Z",
+  "updated_by": "supervisor",
+  "last_progress_at": "2026-03-27T17:06:35.241Z",
+  "heartbeat_timeout": "30m",
+  "max_rounds": 8,
+  "max_retries": 2,
+  "max_wait_duration": "24h",
+  "retry_backoff": "exponential(base=5m, cap=2h)",
+  "nudge_limit": 2,
+  "task_ttl": "7d",
+  "fanout_limit": 3,
+  "retry_budget_remaining": 2,
+  "round_budget_remaining": 8,
+  "pending_review_count": 1,
+  "active_step_count": 0,
+  "history_log": [
+    "TaskCreated#1",
+    "DoneCheckUpdated#manual",
+    "DoneCheckUpdated#manual",
+    "TaskAccepted#2",
+    "PlanReady#3",
+    "ExecutionStarted#4",
+    "BlockedDetected#5",
+    "BlockedEscalatedToReview#6"
+  ],
+  "escalation_count": 0,
+  "state_file_path": "/root/.openclaw/workspace/multi agent test/openclaw-agent-team/runtime/task-ledger-blocked/task-20260327-blocked-escalation-demo/task_state.json",
+  "events_file_path": "/root/.openclaw/workspace/multi agent test/openclaw-agent-team/runtime/task-ledger-blocked/task-20260327-blocked-escalation-demo/task_events.jsonl",
+  "version": 8,
+  "steps": [
+    {
+      "step_id": "task-20260327-blocked-escalation-demo-s1",
+      "task_id": "task-20260327-blocked-escalation-demo",
+      "title": "阻塞升级验证",
+      "kind": "agent",
+      "status": "ready",
+      "depends_on": [],
+      "assignee_type": "main-agent",
+      "assignee_id": "main",
+      "input_refs": [],
+      "output_refs": [],
+      "retry_count": 0,
+      "idempotent": false,
+      "risk_level": "medium",
+      "approval_required": false
+    }
+  ],
+  "reviews": [],
+  "attempts": []
+}

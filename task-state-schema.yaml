@@ -1,0 +1,366 @@
+version: 1
+name: task-state-schema
+
+task:
+  required:
+    - task_id
+    - source
+    - creator
+    - contract_version
+    - goal
+    - context
+    - done_definition
+    - priority
+    - risk_level
+    - status
+    - created_at
+    - updated_at
+    - updated_by
+    - state_file_path
+    - events_file_path
+    - version
+  properties:
+    task_id:
+      type: string
+      description: 全局唯一任务 ID
+    source:
+      type: string
+      enum: [shell, main-agent, system, api, im]
+    creator:
+      type: string
+      description: 创建者标识
+    contract_version:
+      type: string
+    goal:
+      type: string
+    context:
+      type: string
+    context_refs:
+      type: array
+      items:
+        type: string
+    constraints:
+      type: array
+      items:
+        type: string
+    done_definition:
+      type: string
+    done_checks:
+      type: array
+      items:
+        type: object
+        required: [id, description, type, evidence_required, status]
+        properties:
+          id:
+            type: string
+          description:
+            type: string
+          type:
+            type: string
+            enum: [file_exists, command_success, status_match, human_check, custom]
+          evidence_required:
+            type: boolean
+          status:
+            type: string
+            enum: [pending, passed, failed]
+    priority:
+      type: string
+      enum: [low, normal, high]
+      default: normal
+    risk_level:
+      type: string
+      enum: [low, medium, high]
+      default: medium
+    approval_required:
+      type: boolean
+      default: false
+    approval_points:
+      type: array
+      items:
+        type: string
+    review_reason_code:
+      type: string
+      enum:
+        - high_risk_action
+        - approval_point_reached
+        - context_conflict
+        - goal_drift
+        - retry_exhausted
+        - timeout_escalation
+        - manual_hold
+    status:
+      type: string
+      enum: [queued, planning, ready, running, waiting, blocked, retrying, review_required, done, failed, cancelled]
+    current_round:
+      type: integer
+      minimum: 0
+      default: 0
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+    updated_by:
+      type: string
+    heartbeat_at:
+      type: string
+      format: date-time
+    last_progress_at:
+      type: string
+      format: date-time
+    next_check_at:
+      type: string
+      format: date-time
+    blocked_since:
+      type: string
+      format: date-time
+    deadline_at:
+      type: string
+      format: date-time
+    heartbeat_timeout:
+      type: string
+      default: 30m
+    max_rounds:
+      type: integer
+      default: 8
+    max_retries:
+      type: integer
+      default: 2
+    max_wait_duration:
+      type: string
+      default: 24h
+    retry_backoff:
+      type: string
+      default: exponential(base=5m, cap=2h)
+    nudge_limit:
+      type: integer
+      default: 2
+    task_ttl:
+      type: string
+      default: 7d
+    fanout_limit:
+      type: integer
+      default: 3
+    max_concurrent_subtasks:
+      type: integer
+    max_subagent_sessions:
+      type: integer
+    retry_budget_remaining:
+      type: integer
+    round_budget_remaining:
+      type: integer
+    pending_review_count:
+      type: integer
+      default: 0
+    active_step_count:
+      type: integer
+      default: 0
+    result_summary:
+      type: string
+    terminal_reason:
+      type: string
+    blocked_reason:
+      type: string
+    review_reason:
+      type: string
+    history_log:
+      type: array
+      items:
+        type: string
+    escalation_count:
+      type: integer
+      default: 0
+    state_file_path:
+      type: string
+    events_file_path:
+      type: string
+    version:
+      type: integer
+      minimum: 1
+
+step:
+  required:
+    - step_id
+    - task_id
+    - title
+    - kind
+    - status
+  properties:
+    step_id:
+      type: string
+    task_id:
+      type: string
+    title:
+      type: string
+    kind:
+      type: string
+      enum: [agent, manual, tool, review, wait, summary]
+    status:
+      type: string
+      enum: [pending, ready, running, waiting, blocked, retrying, done, failed, cancelled]
+    depends_on:
+      type: array
+      items:
+        type: string
+    assignee_type:
+      type: string
+      enum: [main-agent, task-holder, executor, human, system]
+    assignee_id:
+      type: string
+    input_refs:
+      type: array
+      items:
+        type: string
+    output_refs:
+      type: array
+      items:
+        type: string
+    retry_count:
+      type: integer
+      default: 0
+    timeout_sec:
+      type: integer
+    idempotent:
+      type: boolean
+      default: false
+    risk_level:
+      type: string
+      enum: [low, medium, high]
+      default: medium
+    approval_required:
+      type: boolean
+      default: false
+    started_at:
+      type: string
+      format: date-time
+    finished_at:
+      type: string
+      format: date-time
+    last_error_code:
+      type: string
+    parent_task_id:
+      type: string
+    step_index:
+      type: integer
+
+event:
+  required:
+    - event_id
+    - task_id
+    - event_type
+    - actor_type
+    - actor_id
+    - created_at
+    - seq
+  properties:
+    event_id:
+      type: string
+    task_id:
+      type: string
+    step_id:
+      type: string
+    event_type:
+      type: string
+    from_status:
+      type: string
+    to_status:
+      type: string
+    actor_type:
+      type: string
+      enum: [main-agent, orchestrator, supervisor, task-holder, executor, human, system]
+    actor_id:
+      type: string
+    reason_code:
+      type: string
+    payload:
+      type: object
+    created_at:
+      type: string
+      format: date-time
+    seq:
+      type: integer
+      minimum: 1
+    correlation_id:
+      type: string
+
+review:
+  required:
+    - review_id
+    - task_id
+    - approval_point
+    - requested_by
+    - requested_at
+    - review_status
+  properties:
+    review_id:
+      type: string
+    task_id:
+      type: string
+    step_id:
+      type: string
+    approval_point:
+      type: string
+    requested_by:
+      type: string
+    requested_at:
+      type: string
+      format: date-time
+    review_status:
+      type: string
+      enum: [pending, approved, rejected, cancelled]
+    decision:
+      type: string
+      enum: [approve, reject, hold]
+    decision_by:
+      type: string
+    decision_at:
+      type: string
+      format: date-time
+    decision_note:
+      type: string
+
+attempt:
+  required:
+    - attempt_id
+    - task_id
+    - attempt_no
+    - status
+    - started_at
+  properties:
+    attempt_id:
+      type: string
+    task_id:
+      type: string
+    step_id:
+      type: string
+    attempt_no:
+      type: integer
+      minimum: 1
+    trigger:
+      type: string
+      enum: [initial_dispatch, retry_dispatch, manual_resume]
+    status:
+      type: string
+      enum: [running, waiting, blocked, failed, done, cancelled]
+    actor_type:
+      type: string
+      enum: [main-agent, orchestrator, supervisor, task-holder, executor, human, system]
+    actor_id:
+      type: string
+    reason_code:
+      type: string
+    started_at:
+      type: string
+      format: date-time
+    finished_at:
+      type: string
+      format: date-time
+    output_refs:
+      type: array
+      items:
+        type: string
+    error_code:
+      type: string
+    summary:
+      type: string

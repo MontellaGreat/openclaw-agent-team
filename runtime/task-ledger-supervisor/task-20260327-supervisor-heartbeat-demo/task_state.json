@@ -1,0 +1,106 @@
+{
+  "task_id": "task-20260327-supervisor-heartbeat-demo",
+  "source": "main-agent",
+  "creator": "main",
+  "contract_version": "v1",
+  "goal": "验证 supervisor 对 heartbeat 超时升级",
+  "context": "supervisor heartbeat escalation demo",
+  "context_refs": [],
+  "constraints": [],
+  "done_definition": [
+    "主链状态迁移成立"
+  ],
+  "done_checks": [
+    {
+      "id": "check-1-主链状态迁移成立",
+      "description": "主链状态迁移成立",
+      "type": "status_match",
+      "evidence_required": true,
+      "status": "unresolved",
+      "evidence": [
+        {
+          "kind": "event",
+          "ref": "ExecutionAttemptStarted",
+          "event_seq": 9,
+          "output_refs": [],
+          "note": "pre-done chain satisfied by ExecutionAttemptStarted"
+        },
+        {
+          "kind": "event",
+          "ref": "HeartbeatMissedEscalatedToReview",
+          "event_seq": 10,
+          "output_refs": [],
+          "note": "heartbeat escalation observed"
+        }
+      ],
+      "verified_by": "supervisor",
+      "verified_at": "2026-03-27T17:47:48.783Z"
+    }
+  ],
+  "priority": "normal",
+  "risk_level": "medium",
+  "approval_required": false,
+  "approval_points": [],
+  "status": "review_required",
+  "current_round": 0,
+  "created_at": "2026-03-27T17:47:48.778Z",
+  "updated_at": "2026-03-27T17:47:48.783Z",
+  "updated_by": "supervisor",
+  "last_progress_at": "2026-03-27T17:47:48.778Z",
+  "heartbeat_timeout": "1m",
+  "max_rounds": 8,
+  "max_retries": 2,
+  "max_wait_duration": "24h",
+  "retry_backoff": "exponential(base=5m, cap=2h)",
+  "nudge_limit": 2,
+  "task_ttl": "7d",
+  "fanout_limit": 3,
+  "retry_budget_remaining": 2,
+  "round_budget_remaining": 8,
+  "pending_review_count": 1,
+  "active_step_count": 1,
+  "history_log": [
+    "TaskCreated#6",
+    "TaskAccepted#7",
+    "PlanReady#8",
+    "ExecutionAttemptStarted#9",
+    "HeartbeatMissedEscalatedToReview#10"
+  ],
+  "escalation_count": 0,
+  "state_file_path": "/root/.openclaw/workspace/multi agent test/openclaw-agent-team/runtime/task-ledger-supervisor/task-20260327-supervisor-heartbeat-demo/task_state.json",
+  "events_file_path": "/root/.openclaw/workspace/multi agent test/openclaw-agent-team/runtime/task-ledger-supervisor/task-20260327-supervisor-heartbeat-demo/task_events.jsonl",
+  "version": 5,
+  "steps": [
+    {
+      "step_id": "task-20260327-supervisor-heartbeat-demo-s1",
+      "task_id": "task-20260327-supervisor-heartbeat-demo",
+      "title": "heartbeat supervisor",
+      "kind": "agent",
+      "status": "ready",
+      "depends_on": [],
+      "assignee_type": "main-agent",
+      "assignee_id": "main",
+      "input_refs": [],
+      "output_refs": [],
+      "retry_count": 0,
+      "idempotent": false,
+      "risk_level": "medium",
+      "approval_required": false
+    }
+  ],
+  "reviews": [],
+  "attempts": [
+    {
+      "attempt_id": "a1b6d972-e62e-403a-9517-765021bea5df",
+      "task_id": "task-20260327-supervisor-heartbeat-demo",
+      "step_id": "task-20260327-supervisor-heartbeat-demo-s1",
+      "attempt_no": 1,
+      "trigger": "initial_dispatch",
+      "status": "running",
+      "actor_type": "executor",
+      "actor_id": "executor-demo",
+      "started_at": "2026-03-27T17:47:48.782Z",
+      "output_refs": []
+    }
+  ]
+}
