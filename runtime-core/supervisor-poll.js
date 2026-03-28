@@ -4,6 +4,7 @@ const fs = require("node:fs/promises");
 const path = require("node:path");
 const { supervisorTick } = require("./supervisor");
 const { summarizeDoneChecks } = require("./done-checks");
+const { isDue } = require("./schedule");
 
 async function findTaskStateFiles(runtimeDir) {
   const entries = await fs.readdir(runtimeDir, { withFileTypes: true }).catch(() => []);
@@ -26,6 +27,22 @@ async function pollRuntimeDir(runtimeDir, input = {}) {
   for (const statePath of files) {
     try {
       const task = await readJson(statePath);
+      const due = isDue(task.next_check_at, now);
+      if (!due) {
+        results.push({
+          task_id: task.task_id,
+          state_path: statePath,
+          status_before: task.status,
+          status_after: task.status,
+          skipped: true,
+          reason: "next_check_not_due",
+          event_type: null,
+          next_check_at: task.next_check_at || null,
+          done_check_summary: summarizeDoneChecks(task),
+        });
+        continue;
+      }
+
       const outcome = await supervisorTick(runtimeDir, task, { now, actor_id: actorId });
       results.push({
         task_id: task.task_id,
@@ -35,6 +52,7 @@ async function pollRuntimeDir(runtimeDir, input = {}) {
         skipped: Boolean(outcome.skipped),
         reason: outcome.reason || outcome.event?.reason_code || null,
         event_type: outcome.event?.event_type || null,
+        next_check_at: outcome.task.next_check_at || null,
         done_check_summary: summarizeDoneChecks(outcome.task),
       });
     } catch (error) {

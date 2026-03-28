@@ -17,9 +17,11 @@
 - `export-demo.js`：从 state 导出 handoff / archive / recap 示例
 - `render-demo.js`：从 state 生成 markdown 版 handoff / recap / archive 示例，并写入正式子目录
 - `supervisor.js`：supervisor 最小规则（blocked 超时 / heartbeat 超时升级）
+- `schedule.js`：`next_check_at` 调度计算、backoff 解析、到点判断
 - `demo-supervisor.js`：验证 supervisor 最小升级链的示例入口
 - `supervisor-poll.js`：扫描 ledger 目录并批量执行 supervisorTick 的最小轮询入口
 - `demo-supervisor-poll-upgrade.js`：验证轮询器可对超时任务执行真实批量升级的示例入口
+- `demo-supervisor-next-check.js`：验证 `next_check_at` 补写、未到点跳过、到点后升级的示例入口
 - `ledger.js`：事件追加、状态快照写入、账本路径
 - `state-machine.js`：状态迁移白名单与 done 判定
 - `governance.js`：review 请求 / 决策 / execution attempt 最小实现
@@ -49,6 +51,8 @@ node runtime-core/index.js
 - 已可从 state 自动生成 markdown 版 handoff / recap / archive 文档
 - 已补 supervisor 最小规则：blocked 超时升级、heartbeat 超时升级
 - 已补 supervisor 最小轮询入口：可扫描 ledger 目录并输出升级 / 跳过 / 失败摘要
+- 已补 `next_check_at` 第一版调度：可按状态补写下一次检查时间，并在轮询时跳过未到点任务
+- `demo-supervisor-next-check.js` 已验证：第一次轮询会补写 `next_check_at`，到点前返回 `next_check_not_due`，到点后才执行 heartbeat timeout 升级
 
 ## 当前边界
 当前还没做：

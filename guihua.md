@@ -874,6 +874,7 @@ shell 最小命令集正式收敛为：
 - 仓库纳管关系已核对清楚：`multi agent test/openclaw-agent-team/` 不是根仓库纳管目录，也不是 submodule / gitlink，而是带独立 `.git/` 的内层独立仓库；根仓库当前仅把它视为未跟踪目录，最近代码未进入根仓历史并非提交失败，而是提交目标仓一直应为该 inner repo。后续本项目代码、文档、runtime 产物与项目内提交，应统一在该 inner repo 内完成；如需让根仓感知，只能显式决定改为 submodule 或移除 inner `.git` 后再纳入根仓。
 - 方案 A 已开始落地：项目继续保持独立 inner repo，不调整为 submodule，也不并入根仓；已补 `.gitignore` 忽略 `*.bak-*`，并新增一轮清理提交以收口工作区。当前 push 到 GitHub 时被远端新提交阻塞，原因不是本地仓结构错误，而是 `origin/main` 在此期间新增了 README 相关提交；下一步应先基于远端做安全 rebase / 合并，再完成 push。
 - 已按“直接替换 README 再重提交流程”的口径继续处理：当前项目内 `README.md` 已直接替换为 `origin/main` 的远端版本，避免再次在 README 上做手工冲突合并；后续提交流程应以该 README 版本为新基线继续，而不是回到旧 README 再解冲突。
+- `next_check_at` 调度第一版已落地：新增 `runtime-core/schedule.js`，将 `running / waiting / blocked / retrying` 的下一次检查时间统一收口为 `next_check_at`；`supervisorTick()` 现已可在无升级时补写调度时间，`supervisor-poll` 现已支持“未到 `next_check_at` 则跳过、到点后再执行规则”的最小持续轮询语义。对应验证样例 `demo-supervisor-next-check.js` 已跑通：第一次轮询会为 `running` 任务补写 `next_check_at`，到点前返回 `next_check_not_due`，到点后可正确触发 `HeartbeatMissedEscalatedToReview`，终态为 `review_required` 且 `next_check_at = null`。
 
 以下内容当前仍处于“部分实现 / 待继续补齐”阶段：
 - handoff / archive / recap / output_refs 与 done_check 的自动映射仍是第一版，尚未完全接入正式归档与结果摘要体系
