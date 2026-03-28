@@ -18,10 +18,9 @@ async function readJson(filePath) {
   return JSON.parse(raw);
 }
 
-async function pollRuntimeDir(runtimeDir, input = {}) {
+async function pollTaskStateFiles(files, input = {}) {
   const now = input.now || new Date().toISOString();
   const actorId = input.actor_id || "supervisor";
-  const files = await findTaskStateFiles(runtimeDir);
   const results = [];
 
   for (const statePath of files) {
@@ -38,12 +37,13 @@ async function pollRuntimeDir(runtimeDir, input = {}) {
           reason: "next_check_not_due",
           event_type: null,
           next_check_at: task.next_check_at || null,
+          matched_rules: [],
           done_check_summary: summarizeDoneChecks(task),
         });
         continue;
       }
 
-      const outcome = await supervisorTick(runtimeDir, task, { now, actor_id: actorId });
+      const outcome = await supervisorTick(path.dirname(statePath), task, { now, actor_id: actorId });
       results.push({
         task_id: task.task_id,
         state_path: statePath,
@@ -53,6 +53,8 @@ async function pollRuntimeDir(runtimeDir, input = {}) {
         reason: outcome.reason || outcome.event?.reason_code || null,
         event_type: outcome.event?.event_type || null,
         next_check_at: outcome.task.next_check_at || null,
+        matched_rules: outcome.matched_rules || [],
+        selected_rule: outcome.selected_rule || null,
         done_check_summary: summarizeDoneChecks(outcome.task),
       });
     } catch (error) {
@@ -65,7 +67,6 @@ async function pollRuntimeDir(runtimeDir, input = {}) {
   }
 
   return {
-    runtime_dir: runtimeDir,
     scanned: files.length,
     upgraded: results.filter((item) => item.status_before && item.status_before !== item.status_after).length,
     skipped: results.filter((item) => item.skipped).length,
@@ -74,8 +75,18 @@ async function pollRuntimeDir(runtimeDir, input = {}) {
   };
 }
 
+async function pollRuntimeDir(runtimeDir, input = {}) {
+  const files = await findTaskStateFiles(runtimeDir);
+  const outcome = await pollTaskStateFiles(files, input);
+  return {
+    runtime_dir: runtimeDir,
+    ...outcome,
+  };
+}
+
 module.exports = {
   findTaskStateFiles,
+  pollTaskStateFiles,
   pollRuntimeDir,
 };
 

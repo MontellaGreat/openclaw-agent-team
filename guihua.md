@@ -875,6 +875,7 @@ shell 最小命令集正式收敛为：
 - 方案 A 已开始落地：项目继续保持独立 inner repo，不调整为 submodule，也不并入根仓；已补 `.gitignore` 忽略 `*.bak-*`，并新增一轮清理提交以收口工作区。当前 push 到 GitHub 时被远端新提交阻塞，原因不是本地仓结构错误，而是 `origin/main` 在此期间新增了 README 相关提交；下一步应先基于远端做安全 rebase / 合并，再完成 push。
 - 已按“直接替换 README 再重提交流程”的口径继续处理：当前项目内 `README.md` 已直接替换为 `origin/main` 的远端版本，避免再次在 README 上做手工冲突合并；后续提交流程应以该 README 版本为新基线继续，而不是回到旧 README 再解冲突。
 - `next_check_at` 调度第一版已落地：新增 `runtime-core/schedule.js`，将 `running / waiting / blocked / retrying` 的下一次检查时间统一收口为 `next_check_at`；`supervisorTick()` 现已可在无升级时补写调度时间，`supervisor-poll` 现已支持“未到 `next_check_at` 则跳过、到点后再执行规则”的最小持续轮询语义。对应验证样例 `demo-supervisor-next-check.js` 已跑通：第一次轮询会为 `running` 任务补写 `next_check_at`，到点前返回 `next_check_not_due`，到点后可正确触发 `HeartbeatMissedEscalatedToReview`，终态为 `review_required` 且 `next_check_at = null`。
+- supervisor 第二版最小推进已落地：`supervisor.js` 已从“单条 if 命中即执行”改为“多规则评估 -> 优先级选择 -> 执行选中规则”的组合判定方式，当前已纳入 `blocked_timeout / heartbeat_timeout / waiting_timeout / retry_due` 四类规则，并会回写 `matched_rules + selected_rule`；同时新增 `runtime-core/supervisor-scheduler.js` 作为最小持续调度入口，可按 `next_check_at` 选择下一批任务执行。验证上，`demo-supervisor-multi-rule.js` 已确认规则命中与优先级选择可工作，`demo-supervisor-scheduler.js` 已确认 scheduler 能按批次只执行选中任务，不再误扫批次外任务。
 
 以下内容当前仍处于“部分实现 / 待继续补齐”阶段：
 - handoff / archive / recap / output_refs 与 done_check 的自动映射仍是第一版，尚未完全接入正式归档与结果摘要体系
