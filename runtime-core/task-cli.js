@@ -6,6 +6,7 @@ const { bootstrapTask } = require("./index");
 const { transitionTask } = require("./state-machine");
 const { summarizeDoneChecks } = require("./done-checks");
 const { findTaskStateFiles } = require("./supervisor-poll");
+const { requestReview, decideReview } = require("./governance");
 
 function parseArgs(argv) {
   const positional = [];
@@ -180,6 +181,79 @@ async function retryTaskCommand(runtimeDir, taskId, reason) {
   };
 }
 
+async function approveTaskCommand(runtimeDir, taskId, note) {
+  const task = await loadTask(runtimeDir, taskId);
+  if (task.status !== "review_required") {
+    throw new Error(`cannot approve task in status: ${task.status}`);
+  }
+  const pending = [...(task.reviews || [])].reverse().find((item) => item.review_status === "pending");
+  if (!pending) {
+    throw new Error("no pending review found");
+  }
+  const outcome = await decideReview(runtimeDir, task, {
+    review_id: pending.review_id,
+    decision: "approve",
+    decision_by: "shell-user",
+    actor_type: "human",
+    decision_note: note || "approved via shell",
+    reason_code: "review_approved_via_shell",
+  });
+  return {
+    task_id: outcome.task.task_id,
+    status_before: task.status,
+    status_after: outcome.task.status,
+    event_type: outcome.event.event_type,
+    review_id: pending.review_id,
+    decision: "approve",
+  };
+}
+
+async function rejectTaskCommand(runtimeDir, taskId, note) {
+  const task = await loadTask(runtimeDir, taskId);
+  if (task.status !== "review_required") {
+    throw new Error(`cannot reject task in status: ${task.status}`);
+  }
+  const pending = [...(task.reviews || [])].reverse().find((item) => item.review_status === "pending");
+  if (!pending) {
+    throw new Error("no pending review found");
+  }
+  const outcome = await decideReview(runtimeDir, task, {
+    review_id: pending.review_id,
+    decision: "reject",
+    decision_by: "shell-user",
+    actor_type: "human",
+    decision_note: note || "rejected via shell",
+    reason_code: "review_rejected_via_shell",
+  });
+  return {
+    task_id: outcome.task.task_id,
+    status_before: task.status,
+    status_after: outcome.task.status,
+    event_type: outcome.event.event_type,
+    review_id: pending.review_id,
+    decision: "reject",
+  };
+}
+
+async function requestReviewCommand(runtimeDir, taskId, note) {
+  const task = await loadTask(runtimeDir, taskId);
+  const outcome = await requestReview(runtimeDir, task, {
+    actor_id: "shell-user",
+    actor_type: "human",
+    requested_by: "shell-user",
+    approval_point: "shell_manual_review",
+    reason_code: "shell_manual_review",
+    decision_note: note || "requested via shell",
+  });
+  return {
+    task_id: outcome.task.task_id,
+    status_before: task.status,
+    status_after: outcome.task.status,
+    event_type: outcome.event.event_type,
+    review_id: outcome.review.review_id,
+  };
+}
+
 async function main() {
   const runtimeDir = process.env.RUNTIME_DIR || path.join(process.cwd(), "runtime", "task-ledger-cli");
   const { positional, flags } = parseArgs(process.argv.slice(2));
@@ -234,6 +308,27 @@ async function main() {
     return;
   }
 
+  if (command === "request-review") {
+    const taskId = positional[1];
+    if (!taskId) throw new Error("task_id is required");
+    console.log(JSON.stringify(await requestReviewCommand(runtimeDir, taskId, flags.note), null, 2));
+    return;
+  }
+
+  if (command === "approve") {
+    const taskId = positional[1];
+    if (!taskId) throw new Error("task_id is required");
+    console.log(JSON.stringify(await approveTaskCommand(runtimeDir, taskId, flags.note), null, 2));
+    return;
+  }
+
+  if (command === "reject") {
+    const taskId = positional[1];
+    if (!taskId) throw new Error("task_id is required");
+    console.log(JSON.stringify(await rejectTaskCommand(runtimeDir, taskId, flags.note), null, 2));
+    return;
+  }
+
   throw new Error(`unknown command: ${command}`);
 }
 
@@ -243,6 +338,9 @@ module.exports = {
   showTaskCommand,
   cancelTaskCommand,
   retryTaskCommand,
+  requestReviewCommand,
+  approveTaskCommand,
+  rejectTaskCommand,
 };
 
 if (require.main === module) {

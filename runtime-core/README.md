@@ -25,9 +25,10 @@
 - `demo-supervisor-next-check.js`：验证 `next_check_at` 补写、未到点跳过、到点后升级的示例入口
 - `demo-supervisor-multi-rule.js`：验证多规则命中与优先级选择
 - `demo-supervisor-scheduler.js`：验证 scheduler 的批次选择与执行范围
-- `task-cli.js`：最小 shell 命令入口（create / list / show / cancel / retry）
+- `task-cli.js`：最小 shell 命令入口（create / list / show / cancel / retry / request-review / approve / reject）
 - `task-cli-helpers.js`：CLI 读状态辅助函数
 - `demo-task-cli.js`：验证 shell 最小入口闭环
+- `demo-task-cli-review.js`：验证 shell 审批入口（request-review / approve / reject）
 - `ledger.js`：事件追加、状态快照写入、账本路径
 - `state-machine.js`：状态迁移白名单与 done 判定
 - `governance.js`：review 请求 / 决策 / execution attempt 最小实现
@@ -63,6 +64,8 @@ node runtime-core/index.js
 - 已补最小 scheduler 入口：可按 `next_check_at` 选出下一批 due 任务，并保证只执行批次内任务
 - 已补 shell 最小入口第一版：当前支持 `create / list / show / cancel / retry`，并直接落到账本，不再只是文档定义
 - `demo-task-cli.js` 已验证：create 可创建 queued 任务，list/show 可查看任务池与详情，retry 可把 blocked 任务推进到 retrying，cancel 可将任务终止为 cancelled
+- 已补 shell CLI 第二版审批入口：当前支持 `request-review / approve / reject`，并直接接到 `ReviewCheckpoint` 与 review 决策闭环
+- `demo-task-cli-review.js` 已验证：任务可从 queued 进入 review_required，再走 approve -> ready 或 reject -> cancelled
 
 ## 当前边界
 当前还没做：
