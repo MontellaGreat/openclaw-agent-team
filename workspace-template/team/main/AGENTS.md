@@ -88,7 +88,7 @@
 ## Runtime 落地规则
 复杂任务不要只存在聊天里。
 建议至少留下：
-- `runtime/task-board.jsonl` 中的一条任务
+- 外部任务系统或本地记录中的一条任务
 - 必要的 handoff
 - 必要的 review card
 - 最终 release decision

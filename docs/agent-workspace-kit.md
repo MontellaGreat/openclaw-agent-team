@@ -58,8 +58,8 @@ workspace/
 │       ├── IDENTITY.md
 │       ├── SOUL.md
 │       └── AGENTS.md
-├── runtime/
-│   ├── task-board.jsonl
+├── records/
+│   ├── worklog.md
 │   ├── handoffs/
 │   ├── reviews/
 │   └── release/
@@ -88,11 +88,11 @@ workspace/
 不要给每个子 Agent 复制一套庞大 `TOOLS.md` 和 `USER.md`。
 这两类通常保留在根目录，避免多份漂移。
 
-### 3. runtime/：运行痕迹
-这里不讲理念，只存运行对象：
-- task board
+### 3. records/：本地工作记录
+这里不讲理念，只存工作记录对象：
+- 任务摘要
 - handoff
-- review card
+- review 记录
 - release decision
 
 没有这一层，团队就只是在聊天，不是在协作。
@@ -102,13 +102,13 @@ workspace/
 ## 最小运行闭环
 
 1. 墨影接任务
-2. 在 `runtime/task-board.jsonl` 记一条任务
+2. 在本地记录文件中记一条任务摘要
 3. 判断 L1/L2/L3/L4
 4. 若需派发，按角色模板下发
 5. 子 Agent 回传 handoff
 6. 必要时生成 review card
 7. 墨影给 release decision
-8. 更新 task-board 状态
+8. 更新本地任务记录状态
 
 ---
 
@@ -117,7 +117,7 @@ workspace/
 满足以下 5 条，才算不是空谈：
 - 有主 Agent 根文件
 - 有子 Agent 独立模板
-- 有任务状态对象
+- 有可追踪的任务记录对象
 - 有 handoff 实物
 - 有 review / release 记录
 
@@ -130,7 +130,7 @@ workspace/
 
 1. **planning skill**
    - 负责把用户目标拆成任务树
-   - 输出到 `runtime/task-board.jsonl`
+   - 输出到本地记录文件或外部任务系统
 
 2. **experience / integration guide**
    - 作为外部规划系统接入说明
@@ -142,7 +142,7 @@ workspace/
 
 接入前先问三件事：
 - 它输出的是任务树，还是最终决策？
-- 能否映射到本仓库的 task/handoff/review/release 字段？
+- 能否映射到本仓库的 delegation/handoff/review/release 字段？
 - 会不会把承枢和墨影的职责冲掉？
 
 若会冲掉总控与协调层，只能参考，不应硬接。

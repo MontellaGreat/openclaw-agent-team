@@ -88,8 +88,8 @@ Planning 输出建议至少包含：
 
 ## 六、落地映射
 确认后的 planning 结果应映射到：
-- `runtime/task-board.jsonl`
-- `workspace-template/runtime/plans/`（可选）
+- 外部任务系统任务板或 ledger
+- 外部 planning 输出目录（可选）
 - handoff / review / release 链
 
 ---

@@ -34,10 +34,10 @@
 - 推荐执行顺序
 
 然后由墨影确认，并落入：
-- `runtime/task-board.jsonl`
-- `runtime/handoffs/`
-- `runtime/reviews/`
-- `runtime/release/`
+- 外部任务系统 task board / ledger
+- 外部任务系统 handoff 目录
+- 外部任务系统 review 目录
+- 外部任务系统 release 目录
 
 ### 方式 B：Experience / Integration Guide
 如果外部系统更像“方法论产品”或“平台资产”，先不要深绑定。

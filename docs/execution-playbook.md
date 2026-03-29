@@ -50,19 +50,20 @@
 
 ### 任务开始时
 新增或追加：
-- `runtime/task-board.jsonl`
+- 本地记录文件中的任务摘要
+- 或外部任务系统中的任务卡
 
 ### 子任务完成时
 新增：
-- `runtime/handoffs/<task_id>-<agent>.md`
+- 一份 handoff 文档
 
 ### 需要复核时
 新增：
-- `runtime/reviews/<task_id>-review.md`
+- 一份 review 记录
 
 ### 最终裁决时
 新增：
-- `runtime/release/<task_id>-decision.json`
+- 一份 release decision 记录
 
 ---
 
@@ -87,7 +88,7 @@
 - specialist 直接替墨影拍板
 - 交接没有验证方式
 - review 缺失但任务被当成完成
-- runtime 里没有任务状态记录
+- 没有任何可追踪的任务记录
 - 承枢只存在于说明里，不存在于运行链路里
 
 ---
@@ -125,4 +126,4 @@
 
 最安全的接法是：
 
-> 让外部规划系统输出“候选任务树”，再映射进 `runtime/task-board.jsonl`，由墨影确认后生效。
+> 让外部规划系统输出“候选任务树”，再映射进独立任务系统，由墨影确认后生效。

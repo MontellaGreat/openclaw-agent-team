@@ -123,13 +123,13 @@ SKILL 里举了 `TaskPlanner` 的 Python 用法，但包里并没有这个实现
 - planning output
 - task tree schema
 - dependencies 字段
-- 规划结果如何进入 task-board
+- 规划结果如何进入外部任务系统或任务板
 
 ### 第三步：再决定是否做成真正的 planning skill
 到那时才值得新增：
 - `docs/planning-contract.md`
-- `runtime/task-tree.example.json`
-- `workspace-template/runtime/plans/`
+- 外部任务系统中的任务树 schema
+- 外部任务系统的 plan 输出目录
 - 如果真要可执行，再补脚本或插件实现
 
 ---

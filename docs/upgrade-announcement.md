@@ -49,9 +49,8 @@
 ### 4. 正式总结与 runtime 示例
 新增：
 - `docs/final-audit-and-upgrade-summary.md`
-- `runtime/handoff-event.example.json`
-- `runtime/release-decision.example.json`
-- 更新 `runtime/task-board.example.jsonl`
+- handoff / release / task-board 的结构化治理口径
+- 由独立任务系统承接实现与样例
 
 这意味着项目不再只有制度说明，
 也开始给出可直接参考的运行时对象样例。
@@ -116,9 +115,7 @@
 
 如果你准备接 runtime 或 control center，再继续看：
 - `docs/control-center-contract.md`
-- `runtime/task-board.example.jsonl`
-- `runtime/handoff-event.example.json`
-- `runtime/release-decision.example.json`
+- 独立任务系统中的 task-board / handoff / release 样例
 
 ---
 

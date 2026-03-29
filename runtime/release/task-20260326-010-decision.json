@@ -1,8 +1,0 @@
-{
-  "task_id": "task-20260326-010",
-  "decider_agent": "main",
-  "decision": "released_with_risks",
-  "reason": "允许作为内部可评审结果继续推进，但仍存在待确认事实点与未完成的正式素材生成。",
-  "risk_acknowledged": true,
-  "follow_up_required": true
-}

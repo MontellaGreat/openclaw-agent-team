@@ -72,7 +72,7 @@
 ## 六、运行时样例
 
 若你希望把 review 结论写成结构化卡片，可参考：
-- `runtime/review-card.example.md`
+- 独立任务系统中的 review card 样例
 - `docs/failure-recovery.md`
 - `docs/metrics-and-evaluation.md`
 

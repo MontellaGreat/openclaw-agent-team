@@ -109,7 +109,7 @@
 ## 六、运行时样例
 
 若你希望把 handoff 直接落到运行时对象或协作文档，可参考：
-- `runtime/handoff.example.md`
+- 独立任务系统中的 handoff 文档样例
 - `docs/agent-io-contracts.md`
 
 ---
