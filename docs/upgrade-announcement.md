@@ -49,7 +49,7 @@
 ### 4. 正式总结与 runtime 示例
 新增：
 - `docs/final-audit-and-upgrade-summary.md`
-- handoff / release / task-board 的结构化治理口径
+- handoff / release / 任务板的结构化治理口径
 - 由独立任务系统承接实现与样例
 
 这意味着项目不再只有制度说明，
@@ -115,7 +115,7 @@
 
 如果你准备接 runtime 或 control center，再继续看：
 - `docs/control-center-contract.md`
-- 独立任务系统中的 task-board / handoff / release 样例
+- 独立任务系统中的任务板 / handoff / release 样例
 
 ---
 

@@ -15,7 +15,7 @@
 
 它不再负责：
 - task runtime 实现
-- ledger / state machine / supervisor
+- 状态记录 / state machine / supervisor
 - task CLI
 - runtime acceptance demo
 - 任务系统工程化开发
@@ -29,7 +29,7 @@
 - 审批回写与账本逻辑
 - supervisor 与轮询调度
 - task CLI
-- runtime demo ledger 与验收样例
+- runtime demo 状态记录与验收样例
 
 ### 2.2 本仓继续保留的内容
 - 多 Agent 组织设计
@@ -84,4 +84,4 @@
 
 **OpenClaw 多 Agent 治理规范仓 / 团队模板仓。**
 
-任何 task runtime、任务状态机、supervisor、CLI、ledger 相关实现，均不再在本仓继续推进。
+任何 task runtime、任务状态机、supervisor、CLI、状态记录相关实现，均不再在本仓继续推进。

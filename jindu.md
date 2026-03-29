@@ -10,7 +10,7 @@
 
 不再承担：
 - task runtime
-- ledger
+- 状态记录
 - state machine
 - supervisor
 - task CLI

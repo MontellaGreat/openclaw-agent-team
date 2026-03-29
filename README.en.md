@@ -3,7 +3,7 @@
 A **multi-agent governance spec repo for OpenClaw**.
 
 > This repo is no longer a task runtime implementation repo.  
-> `task runtime / ledger / supervisor / CLI / state machine` have been moved out to a dedicated project.
+> `task runtime / state records / supervisor / CLI / state machine` have been moved out to a dedicated project.
 
 ## Repository Scope
 
@@ -25,11 +25,11 @@ A **multi-agent governance spec repo for OpenClaw**.
    - Control-center / observability / rollout governance language
 
 No longer included here:
-- Task ledger implementation
+- Task state-record implementation
 - State-machine executor
 - Supervisor
 - Task CLI
-- Demo ledgers or runtime acceptance samples
+- Demo state records or runtime acceptance samples
 
 ## Good Fit
 
@@ -42,7 +42,7 @@ Use this repo when you want to:
 Do not use this repo to:
 - Keep developing a task runtime here
 - Treat it as a task orchestration engine
-- Maintain ledger / scheduler / CLI execution logic here
+- Maintain state-record / scheduler / CLI execution logic here
 
 ## Document Entry Points
 
@@ -71,7 +71,7 @@ This cleanup removed:
 - `runtime-core/`
 - `runtime/`
 - task-runtime-related schema / transition / shell command docs
-- runtime samples and demo ledger artifacts
+- runtime samples and demo state-record artifacts
 - old README and planning wording that implied runtime implementation lives here
 
 ## Links

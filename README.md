@@ -3,7 +3,7 @@
 一个面向 OpenClaw 的 **多 Agent 协作治理规范仓**。
 
 > 它不是任务 runtime 引擎，也不再承载任务系统实现。  
-> `task runtime / ledger / supervisor / CLI / state machine` 已迁出到独立项目维护。
+> `task runtime / 状态记录 / supervisor / CLI / state machine` 已迁出到独立项目维护。
 
 ## 项目定位
 
@@ -29,7 +29,7 @@
 - 状态机执行器
 - supervisor
 - task CLI
-- demo ledger / acceptance runtime 样例
+- demo 状态记录 / acceptance runtime 样例
 
 ## 当前仓库适合做什么
 
@@ -42,7 +42,7 @@
 不适合：
 - 在本仓继续开发任务系统 runtime
 - 把本仓当成 task orchestration engine
-- 在本仓维护 ledger / scheduler / CLI 执行链
+- 在本仓维护状态记录 / scheduler / CLI 执行链
 
 ## 文档入口
 

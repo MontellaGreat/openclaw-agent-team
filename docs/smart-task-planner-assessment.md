@@ -121,9 +121,9 @@ SKILL 里举了 `TaskPlanner` 的 Python 用法，但包里并没有这个实现
 先在本仓库定义：
 - planning input
 - planning output
-- task tree schema
+- 任务树 schema
 - dependencies 字段
-- 规划结果如何进入外部任务系统或任务板
+- 规划结果如何进入外部任务系统
 
 ### 第三步：再决定是否做成真正的 planning skill
 到那时才值得新增：

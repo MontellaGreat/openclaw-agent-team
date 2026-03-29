@@ -34,7 +34,7 @@
 - 推荐执行顺序
 
 然后由墨影确认，并落入：
-- 外部任务系统 task board / ledger
+- 外部任务系统 task board / 状态记录
 - 外部任务系统 handoff 目录
 - 外部任务系统 review 目录
 - 外部任务系统 release 目录
