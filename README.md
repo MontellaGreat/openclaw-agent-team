@@ -12,7 +12,7 @@
 - `docs/protocols/`：路由、handoff、review/release gate 等协议
 - `docs/operations/`：执行、排障、发布、接入
 - `docs/reference/`：边界表、协作表、参考说明
-- `examples/`：复杂链路、统一验收、handoff 示例
+- `examples/`：最小运行样例集
 - `workspace/templates/AGENTS.md`：长期运行入口模板
 
 ## 正式角色卡
@@ -33,9 +33,9 @@
 - `docs/protocols/review-release-gates-v1.md`
 - `docs/reference/agent-collaboration-boundaries-v1.md`
 - `examples/sop/role-handoff-examples-v1.md`
-- `examples/complex-task-chain-example-v1.md`
+- `examples/sop/specialist-handoff.example.md`
 - `examples/unified-acceptance-example-v1.md`
 
 ## 说明
 - GitHub 仓库只保留当前有效正式版与仍在使用的协议文档。
-- 历史迭代稿不再保留在仓库主线；如需追溯，可查 Git 历史或本地 archive。
+- 讨论稿、计划稿、草案稿不再保留在仓库主线。

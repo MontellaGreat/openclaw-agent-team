@@ -13,5 +13,5 @@
 
 ## 3. 最后看运行样例
 - `examples/sop/role-handoff-examples-v1.md`
-- `examples/complex-task-chain-example-v1.md`
+- `examples/sop/specialist-handoff.example.md`
 - `examples/unified-acceptance-example-v1.md`

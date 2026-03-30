@@ -11,7 +11,7 @@
 - 看角色边界：看 `docs/reference/agent-collaboration-boundaries-v1.md`
 - 看路由：看 `docs/protocols/agent-routing-playbook-v1.md`
 - 看 handoff：看 `examples/sop/role-handoff-examples-v1.md`
-- 看复杂链路样例：看 `examples/complex-task-chain-example-v1.md`
+- 看统一验收样例：看 `examples/unified-acceptance-example-v1.md`
 
 ## 常用动作
 - 理清依赖与阶段顺序
