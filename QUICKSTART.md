@@ -2,7 +2,7 @@
 
 ## 1. 先看正式入口
 优先阅读：
-1. `main-agent/moying.md`
+1. `agent-cards/moying.md`
 2. `workspace/templates/AGENTS.md`
 3. `agent-cards/README.md`
 

@@ -1,7 +1,7 @@
 # INSTALL
 
 ## 核心入口
-- `main-agent/moying.md`
+- `agent-cards/moying.md`
 - `workspace/templates/AGENTS.md`
 - `agent-cards/README.md`
 
@@ -12,5 +12,5 @@
 - `docs/reference/`：边界表、说明、映射计划
 
 ## 角色卡
-- 主 Agent：`main-agent/moying.md`
+- 主 Agent：`agent-cards/moying.md`
 - specialists：`agent-cards/*.md`

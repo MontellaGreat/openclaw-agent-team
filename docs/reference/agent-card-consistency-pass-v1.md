@@ -56,7 +56,7 @@
 - `墨影` 才有最终审议权
 
 ## 当前第一圈正式角色卡
-- `main-agent/moying.md`
+- `agent-cards/moying.md`
 - `agent-cards/chengshu.md`
 - `agent-cards/tieshou.md`
 - `agent-cards/biguan.md`

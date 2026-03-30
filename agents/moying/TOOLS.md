@@ -11,7 +11,7 @@
 - 判断角色边界：先看 `docs/reference/agent-collaboration-boundaries-v1.md`
 - 判断路由：先看 `docs/protocols/agent-routing-playbook-v1.md`
 - 判断 gate：先看 `docs/protocols/review-release-gates-v1.md`
-- 判断角色人格与职责：看 `main-agent/moying.md` 与 `agent-cards/*.md`
+- 判断角色人格与职责：看 `agent-cards/moying.md` 与 `agent-cards/*.md`
 
 ## 主 Agent 常用动作
 - 读取协议、角色卡、样例，用于判断路由与边界

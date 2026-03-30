@@ -1,7 +1,7 @@
 # Agent Cards
 
 ## 正式版
-- `main-agent/moying.md`
+- `agent-cards/moying.md`
 - `chengshu.md`
 - `tieshou.md`
 - `biguan.md`

@@ -5,7 +5,7 @@
 > 一句话快速安装提示词：直接使用 `prompt/PROMPT_FULL.md` 作为唯一正式主提示词入口。
 
 ## 当前结构
-- `main-agent/moying.md`：主 Agent 正式角色卡
+- `agent-cards/moying.md`：主 Agent 正式角色卡
 - `agent-cards/`：specialist 正式角色卡
 - `agents/`：各角色正式运行包（`IDENTITY.md` / `SOUL.md` / `TOOLS.md` / `AGENTS.md`）
 - `docs/core/`：定位、架构、总览
@@ -16,7 +16,7 @@
 - `workspace/templates/AGENTS.md`：长期运行入口模板
 
 ## 正式角色卡
-- `main-agent/moying.md`
+- `agent-cards/moying.md`
 - `agent-cards/chengshu.md`
 - `agent-cards/tieshou.md`
 - `agent-cards/biguan.md`

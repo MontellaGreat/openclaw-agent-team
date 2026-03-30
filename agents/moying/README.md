@@ -9,4 +9,4 @@
 - `AGENTS.md`
 
 角色卡入口：
-- `main-agent/moying.md`
+- `agent-cards/moying.md`

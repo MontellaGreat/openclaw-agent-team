@@ -21,7 +21,7 @@
 - `docs/protocols/main-agent-decision-flow.md`
 
 已落地到：
-- `main-agent/moying.md`
+- `agent-cards/moying.md`
 - `agents/moying/AGENTS.md`
 - `prompt/PROMPT_FULL.md`
 
