@@ -36,6 +36,10 @@
 - `examples/sop/specialist-handoff.example.md`
 - `examples/unified-acceptance-example-v1.md`
 
+## OpenClaw 接入样例
+- `docs/operations/feishu-multi-agent-setup.md`
+- `openclaw.feishu-multi-agent.example.json`
+
 ## 说明
 - GitHub 仓库只保留当前有效正式版与仍在使用的协议文档。
 - 讨论稿、计划稿、草案稿不再保留在仓库主线。

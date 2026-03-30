@@ -1,0 +1,72 @@
+{
+  "$schema": "https://openclaw.ai/schemas/openclaw.json",
+  "agents": {
+    "list": [
+      {
+        "id": "moying",
+        "default": true,
+        "name": "Moying",
+        "workspace": "~/.openclaw/workspace-moying",
+        "agentDir": "~/.openclaw/agents/moying/agent"
+      },
+      {
+        "id": "chengshu",
+        "name": "Chengshu",
+        "workspace": "~/.openclaw/workspace-chengshu",
+        "agentDir": "~/.openclaw/agents/chengshu/agent"
+      },
+      {
+        "id": "tieshou",
+        "name": "Tieshou",
+        "workspace": "~/.openclaw/workspace-tieshou",
+        "agentDir": "~/.openclaw/agents/tieshou/agent"
+      },
+      {
+        "id": "wenxi",
+        "name": "Wenxi",
+        "workspace": "~/.openclaw/workspace-wenxi",
+        "agentDir": "~/.openclaw/agents/wenxi/agent"
+      }
+    ]
+  },
+  "bindings": [
+    {
+      "agentId": "moying",
+      "match": {
+        "channel": "feishu",
+        "accountId": "default",
+        "peer": {
+          "kind": "dm",
+          "id": "user:ou_583bcfb39dd1d14a0b117c16cbfb8127"
+        }
+      }
+    }
+  ],
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "typingIndicator": false,
+      "resolveSenderNames": true,
+      "accounts": {
+        "default": {
+          "appId": "cli_replace_me",
+          "appSecret": "replace_me",
+          "name": "Moying Assistant"
+        }
+      }
+    }
+  },
+  "tools": {
+    "subagents": {
+      "tools": {
+        "deny": [
+          "sessions_spawn",
+          "sessions_send",
+          "sessions_history",
+          "sessions_list"
+        ]
+      }
+    }
+  }
+}
