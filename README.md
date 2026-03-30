@@ -2,9 +2,12 @@
 
 一个面向 OpenClaw 多 Agent 协作的模板仓，用于沉淀主 Agent、specialist、协作协议、handoff 规范、gate 规则与验收样例。
 
+> 一句话快速安装提示词：直接使用 `prompt/PROMPT_FULL.md` 作为唯一正式主提示词入口。
+
 ## 当前结构
 - `main-agent/moying.md`：主 Agent 正式角色卡
 - `agent-cards/`：specialist 正式角色卡
+- `agents/`：各角色正式运行包（`IDENTITY.md` / `SOUL.md` / `TOOLS.md` / `AGENTS.md`）
 - `docs/core/`：定位、架构、总览
 - `docs/protocols/`：路由、handoff、review/release gate 等协议
 - `docs/operations/`：执行、排障、发布、接入
@@ -21,6 +24,9 @@
 - `agent-cards/tanzhen.md`
 - `agent-cards/guanxiang.md`
 - `agent-cards/pianchang.md`
+
+## 正式主提示词
+- `prompt/PROMPT_FULL.md`
 
 ## 协议与样例
 - `docs/protocols/agent-routing-playbook-v1.md`
