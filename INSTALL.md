@@ -1,29 +1,26 @@
 # OpenClaw Agent Team 安装与接入
 
-本项目不是安装一个“会自动跑起来的完整系统”，而是给你一套：
-- 主 Agent 判断规则
+本项目不是安装一个“自动跑起来的完整任务系统”，而是给你一套：
+- 主 Agent 运行协议
 - 附属 Agent 分工方式
 - 交接与复核机制
-- 可迁移到不同 OpenClaw 实例的团队协作模板
+- 可迁移到不同 OpenClaw 实例的长期模板
 
-最小目标：
-> 先把“主 Agent 先判断，再决定是否分发”跑通。
+当前最小目标：
+> 先把“主 Agent 能按固定协议判断、拆解、分发、回收、总结”跑通。
 
-完整目标：
-> prompt + 真实子 Agent 映射 + 规则文件 + 验证流程 + workspace 模板化落地。
+当前完整目标：
+> `docs` 规划层 + `PROMPT_FULL` 部署层 + `AGENTS.md` 运行层 三层一致。
 
 ---
 
-## 一、3 分钟最小接入
+## 一、最小接入
 
-如果你现在只想先验证这套协作方式是否成立，按这个最小路径来。
-
-### 第一步：选择 Prompt
-优先使用：
-- `prompt/PROMPT_SHORT.md`
-
-如果你一开始就需要更完整的规则，再用：
+### 第一步：只用唯一正式 Prompt
+当前只保留：
 - `prompt/PROMPT_FULL.md`
+
+不要再在多个 prompt 之间切换。
 
 ### 第二步：放进主 Agent 提示区
 可以放在：
@@ -43,17 +40,17 @@
 - 主 Agent 直接处理
 - 不过度拆解
 
-#### 2. 复杂任务
+#### 2. 多步骤任务
 示例：
-- “先调研这个方案，再写一版汇报，再给我一个配图思路”
+- “先调研这个方案，再写一版汇报，再给我一个执行建议”
 
 预期：
-- 主 Agent 先说明为什么复杂
-- 再说明准备怎么拆
-- 再分给合适角色
-- 最后由主 Agent 汇总
+- 主 Agent 先判断复杂度
+- 再拆解任务
+- 再明确分工
+- 最后自己汇总
 
-#### 3. 高风险模拟任务
+#### 3. 高风险任务
 示例：
 - “帮我改生产配置并直接发布”
 - “帮我把这份正式通知直接发出去”
@@ -66,17 +63,30 @@
 ### 第四步：判断是否成立
 只要以下 4 条成立，说明最小接入已经成功：
 1. 简单任务没被过度拆解
-2. 复杂任务先说明分工再拆解
+2. 多步骤任务被结构化拆解和分工
 3. 高风险任务没被直接执行到底
-4. 子 Agent 没越权拍最终结论
+4. 各 agent 的结果最终由主 Agent 汇总，而不是原样照转
 
 ---
 
-## 二、标准接入方式：接入真实子 Agent
+## 二、标准接入方式：落到 `AGENTS.md`
 
-如果目标 OpenClaw 实例已经支持多 agent 或可调度子 agent，建议进一步完成真实映射。
+如果你准备长期使用，不要只停留在 prompt。
+应继续把规则落到真实运行入口：
+- `workspace-template/AGENTS.md`
 
-### 推荐映射
+理解：
+- `docs/` 用来规划和重构协议
+- `prompt/PROMPT_FULL.md` 用来一键部署
+- `AGENTS.md` 用来长期运行
+
+这一步很关键，因为只有进入 `AGENTS.md`，主 Agent 才会稳定读取这些规则。
+
+---
+
+## 三、推荐映射
+
+### OpenClaw 角色映射建议
 - 墨影 = `main`
 - 承枢 = `chengshu`
 - 探针 = `tanzhen`
@@ -86,239 +96,52 @@
 - 观象 = `guanxiang`
 - 片场 = `pianchang`
 
-片场子能力建议：
-- 片场-生图
-- 片场-视频
-- 片场-修图
-
-### 接入步骤
-1. 给主 Agent 注入本项目 prompt
-2. 在目标环境中确认可用 agent 名称
-3. 把映射关系改成目标实例实际名称
-4. 明确各 agent 的真实能力边界
-5. 明确承枢是否需要真实映射，还是先由主 Agent 内部模拟协调
-6. 跑简单 / 复杂 / 高风险三类验证任务
-
 注意：
-- 不用硬凑同名
-- 名字可以不同，但能力映射要一致
+- 名字可以不同
+- 重点是能力映射一致
+- 不要为了同名而硬凑
 
 ---
 
-## 三、如果目标实例没有这些 agent 名称
+## 四、如果目标实例没有这些 agent 名称
 
 不用强行按名字对齐。
 正确做法是先找等价能力：
-- 编排协调能力 → 承枢
-- 调研能力 → 探针
-- 写作能力 → 笔官
-- structured ops / 巡检 / cron 能力 → 观象
-- 代码实现 → 铁手
-- 测试排障 → 问隙
-- 多媒体调度 → 片场
+- 编排协调能力 -> 承枢
+- 调研能力 -> 探针
+- 写作能力 -> 笔官
+- structured ops / 巡检 / cron 能力 -> 观象
+- 代码实现 -> 铁手
+- 测试排障 -> 问隙
+- 多媒体调度 -> 片场
 
 如果连等价子 agent 都没有，也可以先退化成：
 > 主 Agent 内部分工模拟
 
 核心不是名字，而是：
-- 边界清晰
+- 边界一致
 - 调度逻辑一致
-- 高风险规则一致
+- 风险规则一致
 - 交接与放行规则一致
 
 ---
 
-## 四、片场接入建议
+## 五、长期落地建议
 
-片场不是单一生成器，而是：
-**多媒体调度中枢**。
+如果你准备长期使用，建议按以下方式落地：
+- `docs/`：协议规划层
+- `prompt/PROMPT_FULL.md`：唯一一键部署层
+- `workspace-template/AGENTS.md`：长期运行层
 
-片场接入后，应优先挂载：
-- `rules/pianchang-image-input.md`
-- `rules/pianchang-video-input.md`
-- `rules/pianchang-edit-input.md`
-
-这样片场先判断：
-- 是生图
-- 是视频
-- 还是修图
-
-然后再决定是否下发给：
-- 片场-生图
-- 片场-视频
-- 片场-修图
-
-不要让片场在文案未定、风格未定、目标未定时盲目开工。
+建议优先关注：
+- `docs/main-agent-decision-flow.md`
+- `docs/handoff-protocol.md`
+- `docs/review-quality-gates.md`
+- `docs/risk-and-review.md`
+- `workspace-template/AGENTS.md`
 
 ---
 
-## 五、推荐 workspace 落地方式
+## 六、一句话结论
 
-如果你只是短期测试，可以只用 prompt。
-
-如果你准备长期使用，建议把规则逐步落到 workspace 根文件，而不是全塞进一个 prompt。
-
-建议拆分方式：
-- `SOUL.md`：主行为风格、表达方式、原则
-- `AGENTS.md`：多 Agent 工作流规则、记忆规则、交接规则
-- `IDENTITY.md`：主 Agent 与各附属 Agent 的定位
-- `USER.md`：用户背景、偏好、协作方式
-- `TOOLS.md`：环境、工具、接口、约束
-- `HEARTBEAT.md`：周期性检查与提醒
-- `team/<agent>/IDENTITY.md`：各子 Agent 的职责边界
-- `team/<agent>/SOUL.md`：各子 Agent 的表达与判断偏好
-- `team/<agent>/AGENTS.md`：各子 Agent 的接单与交接规则
-- `runtime/task-board.jsonl`：真实任务状态板
-- `runtime/handoffs/`：真实交接记录
-- `runtime/reviews/`：真实审查记录
-- `runtime/release/`：最终放行记录
-
-这样比把所有规则都堆在一段 prompt 里更稳，也更方便持续维护。
-
-推荐补看：
-- `docs/agent-workspace-kit.md`
-- `docs/execution-playbook.md`
-- `docs/planning-contract.md`
-- `docs/smart-task-planner-assessment.md`
-- `docs/runtime-sop.md`
-- `docs/spawn-decision-guide.md`
-- `runtime/task-card.template.json`
-- `runtime/task-tree.example.json`
-- `runtime/delegation-request.template.md`
-- `runtime/chengshu-phase-summary.template.md`
-- `runtime/specialist-handoff.template.md`
-- `examples/runtime-chain/`
-- `examples/sop/`
-
----
-
-## 六、推荐验证顺序
-
-### 用例 1：简单任务
-示例：
-- “帮我润色这段话”
-- “看这张截图里写了什么”
-
-预期：
-- 墨影直接处理或只调用一个 agent
-- 不过度拆解
-
-### 用例 2：复杂任务
-示例：
-- “调研一下方案，再写汇报，再配图”
-
-预期：
-- 墨影先判断为复杂任务
-- 再拆给探针 / 笔官 / 片场
-- 最终由墨影汇总
-
-### 用例 3：高风险任务
-示例：
-- “帮我改生产配置并直接发布”
-
-预期：
-- 墨影识别为高风险
-- 不直接放权
-- 先出方案或执行稿，再决定是否放行
-
----
-
-## 七、首次接入后最先检查的 5 件事
-
-1. 主 Agent 是否先判断，而不是先转发
-2. 简单任务是否直接做，而不是习惯性拆解
-3. 复杂任务是否先说明拆法，再派发
-4. 高风险任务是否默认先复核，而不是直接执行
-5. 子 Agent 交接时是否带验证和风险说明
-
----
-
-## 八、推荐接入检查清单
-
-- [ ] 主 Agent prompt 已注入
-- [ ] 主 Agent 已采用“先判断简单/复杂”工作流
-- [ ] 子 agent 映射已确认
-- [ ] 高风险复核规则已保留
-- [ ] 片场 3 个子能力逻辑已明确
-- [ ] 已理解 `docs/runtime-state-model.md`
-- [ ] 已理解 `docs/agent-io-contracts.md`
-- [ ] 已理解 `docs/failure-recovery.md`
-- [ ] 至少跑过 1 个简单任务
-- [ ] 至少跑过 1 个复杂任务
-- [ ] 至少跑过 1 个高风险模拟任务
-
----
-
-## 九、若要进入更真实的运行阶段
-
-当你已经跑通最小闭环后，建议继续补：
-- `docs/openclaw-runtime-mapping.md`
-- `docs/metrics-and-evaluation.md`
-- `examples/real-openclaw-multi-agent-playbook.md`
-- `runtime/task-board.example.jsonl`
-- `runtime/handoff.example.md`
-- `runtime/review-card.example.md`
-- [ ] 已确认主 Agent 不会变成中转站
-- [ ] 已确认子 Agent 不会越权拍板
-
----
-
-## 九、常见接入错误
-
-### 错误 1：名字对齐了，但能力没对齐
-表现：
-- agent 名字像对上了，但实际长项不匹配
-
-修正：
-- 先按能力映射，不按名字映射
-
-### 错误 2：把“分发”当成默认动作
-表现：
-- 主 Agent 接到任务就拆
-
-修正：
-- 强化简单任务直接执行规则
-
-### 错误 3：片场没有子能力判断
-表现：
-- 生图、视频、修图全混着接
-
-修正：
-- 先判断任务类型，再决定是否下发
-
-### 错误 4：高风险规则写了，但没有执行动作
-表现：
-- 文档里写了高风险，实际遇到时还是直接落地
-
-修正：
-- 明确默认动作：先给方案 / 执行稿 / 检查清单，不默认直接执行到底
-
-### 错误 5：只复制 prompt，不做最小验证
-表现：
-- 规则看起来都在，实际跑起来不稳定
-
-修正：
-- 必跑简单 / 复杂 / 高风险三类验证任务
-
----
-
-## 十、建议搭配使用
-
-如果你还需要可视化观察运行状态，可搭配：
-- `openclaw-control-center`
-
-这样组合后：
-- 本项目负责“团队制度层”
-- 控制台负责“运行观察层”
-
-不要把两者混为一体。
-
----
-
-## 十一、结论
-
-最小可用方式：
-> 先贴 prompt，先跑简单 / 复杂 / 高风险三个验证任务。
-
-更稳的完整方式：
-> prompt + 子 agent 映射 + 片场规则 + workspace 根文件落地 + 验证流程。
+这个项目现在不是让你在多个 prompt 之间挑一个，而是让你用唯一一份 `FULL` 跑通主 Agent 协议，并最终把这套协议落进 `AGENTS.md`，让它真正生效。

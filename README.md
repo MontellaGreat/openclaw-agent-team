@@ -31,12 +31,32 @@
 - task CLI
 - demo 状态记录 / acceptance runtime 样例
 
+## 当前仓库最重要的事
+
+这个仓现在最重要的，不是再写更多“说明文档”，而是把：
+- 主 Agent 的能力范围与限制
+- 收到任务后的判断顺序
+- 拆解协议
+- 分发协议
+- 协作协议
+- 结果回收与总结协议
+
+从静态说明，推进成：
+
+**主 Agent 真会读取、真会执行的运行协议。**
+
+因此当前正式收口为：
+- docs 用来规划协议
+- `prompt/PROMPT_FULL.md` 是唯一正式一键部署入口
+- `workspace-template/AGENTS.md` 是长期运行入口模板
+
 ## 当前仓库适合做什么
 
 适合：
 - 给 OpenClaw 团队搭治理骨架
 - 定义主 Agent / 协调层 / specialist 的职责
-- 统一 review、release、handoff、风险边界
+- 把主 Agent 的运行协议写成可执行提示层
+- 统一拆解、分发、handoff、review、release、风险边界
 - 作为多 Agent 协作规范包或模板仓使用
 
 不适合：
@@ -44,17 +64,17 @@
 - 把本仓当成 task orchestration engine
 - 在本仓维护状态记录 / scheduler / CLI 执行链
 
-## 文档入口
+## 入口文件
 
-- `docs/v1-positioning.md`：项目定位
-- `docs/architecture.md`：整体架构
-- `docs/agent-specifications.md`：角色规格
-- `docs/main-agent-decision-flow.md`：主 Agent 判断与分发
+- `prompt/PROMPT_FULL.md`：唯一正式一键部署提示词
+- `workspace-template/AGENTS.md`：长期运行入口模板
+- `docs/main-agent-decision-flow.md`：主 Agent 运行协议
 - `docs/handoff-protocol.md`：交接协议
 - `docs/review-quality-gates.md`：复核门禁
 - `docs/risk-and-review.md`：风险与审议
 - `docs/planning-contract.md`：planning 层契约
 - `docs/control-center-contract.md`：控制中心接入契约
+- `guihua.md`：统一规划总稿
 
 ## 迁移说明
 
@@ -64,17 +84,20 @@
 - 协作规则
 - 模板
 - 接入契约
+- 主 Agent 可执行运行协议
 
 不再在这里继续堆 task runtime 代码或运行样例。
 
 ## 当前状态
 
-当前已完成一次清理：
+当前已完成一次清理与一次入口收口：
 - 移除 `runtime-core/`
 - 移除 `runtime/`
 - 移除 task runtime 相关 schema / transition / shell 命令文件
 - 移除 runtime 样例与 demo 账本产物
 - README 与主规划改写为“治理仓”口径
+- prompt 入口收口为只保留 `PROMPT_FULL`
+- 主 Agent 协议开始迁入 `workspace-template/AGENTS.md`
 
 ## 相关链接
 
