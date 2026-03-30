@@ -22,7 +22,6 @@
 - 一句话版
 
 ## 本轮统一的核心原则
-
 ### 1. 主 Agent 与 specialist 分层明确
 - `墨影` 负责判断、裁决、放行
 - specialist 负责专项执行 / 判断 / 支撑
@@ -56,15 +55,15 @@
 - `问隙` 可以复核
 - `墨影` 才有最终审议权
 
-## 当前第一圈角色卡
-- `agent-cards/main-agent/moying-v5.md`
-- `agent-cards/chengshu-v1.md`
-- `agent-cards/tieshou-v1.md`
-- `agent-cards/biguan-v1.md`
-- `agent-cards/wenxi-v1.md`
-- `agent-cards/tanzhen-v1.md`
-- `agent-cards/guanxiang-v1.md`
-- `agent-cards/pianchang-v1.md`
+## 当前第一圈正式角色卡
+- `main-agent/moying.md`
+- `agent-cards/chengshu.md`
+- `agent-cards/tieshou.md`
+- `agent-cards/biguan.md`
+- `agent-cards/wenxi.md`
+- `agent-cards/tanzhen.md`
+- `agent-cards/guanxiang.md`
+- `agent-cards/pianchang.md`
 
 ## 下一步建议
 1. 基于这套角色卡，继续固化角色协作边界表
